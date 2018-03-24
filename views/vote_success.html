@@ -1,0 +1,100 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>vote success</title>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+  <script>
+    angular
+      .module('VoterInfo', ['ngMaterial'])
+      .controller('AppCtrl', function($scope) {
+        $scope.finish_vote = function() {
+          location.href = '/auth/logout';
+        };
+      });
+  </script>
+</head>
+
+<body>
+    <div ng-app="VoterInfo" layout-padding >
+      <div class="md-whiteframe-4dp" >
+        <md-toolbar layout-padding>
+          <h3>
+            투표완료
+          </h3>
+        </md-toolbar>
+        <div layout="column">
+          <div flex="10">
+
+          </div>
+          <div flex="30">
+            <canvas id="myChart"></canvas>
+          </div>
+          <div flex="10" text-align="center">
+
+          </div>
+          <div flex="10" layout="row" layout-align="center" layout-margin ng-controller="AppCtrl">
+            <md-button class="md-raised" flex="grow" ng-click="finish_vote()">
+              투표창종료
+            </md-button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  <script>
+    var ctx = document.getElementById("myChart");
+    var datas = {
+      labels: [],
+      datasets: [{
+        label: '# of Votes',
+        data: [],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    }
+    var myChart = new Chart(ctx, {
+      type: 'pie',
+      data: datas,
+    });
+    function addData(chart, label, data) {
+      chart.data.labels.push(label);
+      chart.data.datasets.forEach((dataset) => {
+        dataset.data.push(data);
+      });
+      chart.update();
+    }
+    function removeData(chart) {
+      chart.data.labels.pop();
+      chart.data.datasets.forEach((dataset) => {
+        dataset.data.pop();
+      });
+      chart.update();
+    }
+    addData(myChart, "이박사", 5000000);
+    addData(myChart, "문검사", 1000000);
+    addData(myChart, "강시장", 3500000);
+  </script>
+</body>
+</html>
