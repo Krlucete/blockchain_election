@@ -23,10 +23,11 @@ app.use(session({
     host: 'localhost',
     port: 3307,
     user: 'root',
-    password: 'j2dxro3r',
+    password: 'gusdk9470',
     database: 'voter'
   })
 }));
 //router
 const main_router = require('./router/main')(app);
 const auth_router = require('./router/auth')(app);
+//const register_router = require('./router/register')(app);

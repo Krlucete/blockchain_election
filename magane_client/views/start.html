@@ -7,14 +7,20 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+
   <script>
-    angular
-      .module('start_page_with_logo', ['ngMaterial'])
-      .controller('AppCtrl', function($scope) {
-        $scope.go_to_list_page = function() {
-          location.href = '/select_page';
-        };
-      });
+      angular
+          .module('start_page_with_logo', ['ngMaterial'])
+          .controller('AppCtrl', function($scope) {
+              $scope.go_to_register_page = function() {
+                  //location.href = '/select_page';
+                  location.href = '/register';
+              };
+              $scope.go_to_login_page = function() {
+                  //location.href = '/select_page';
+                  location.href = '/login';
+              };
+          });
   </script>
 </head>
 <body ng-app="start_page_with_logo" ng-controller="AppCtrl">
@@ -24,6 +30,9 @@
       <div layout="row" layout-align="center center">
           <img flex="50" ng-src="/img/logo_deep_blue.png"/>
       </div>
+      <div layout="row" layout-align="center center">
+        <p>선거관리위원회 선거제작 페이지 입니다.</p>
+      </div>
     </div>
     <div flex="25">
 
@@ -32,8 +41,13 @@
       <div layout="row" flex layout-align="center center">
         <md-button
                   class="md-primary"
-                  ng-click="go_to_list_page()">
-                  선거하기
+                  ng-click="go_to_register_page()">
+                  회원가입
+        </md-button>
+        <md-button
+                class="md-primary"
+                ng-click="go_to_login_page()">
+                로그인
         </md-button>
       </div>
     </div>

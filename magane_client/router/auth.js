@@ -12,11 +12,11 @@ module.exports = function(app) {
         var uname = req.body.username;
         var pwd = req.body.password;
         const is_voted = 1;
-        var sql = "select * from citizens where name=\'" + uname + "\' AND resident_num = \'" + pwd + "\'";
+        var sql = "select * from voter where name=\'" + uname + "\' AND resident_num = \'" + pwd + "\'";
         var conn = mysql.createConnection({
           host: 'localhost',
           user: 'root',
-          password: 'j2dxro3r',
+          password: 'gusdk9470',
           port: '3307',
           database: 'voter'
         });
@@ -52,7 +52,8 @@ module.exports = function(app) {
                   req.session.username = name;
                   req.session.userid = id;
                   req.session.save(function() {
-                    res.render('vote.html');
+                    //res.render('vote.html');
+                      res.render('select_page.html')
                   });
                 }
               }

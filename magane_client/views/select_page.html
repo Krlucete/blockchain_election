@@ -11,11 +11,14 @@
     angular
       .module('select_page', ['ngMaterial'])
       .controller('AppCtrl', function($scope) {
-        $scope.presidential_election = function() {
-          location.href = '/presidential_election';
+        $scope.mk_presidential_election = function() {
+          //location.href = '/presidential_election';
+            location.href = '/mk_presidential_election';
         };
-        $scope.shareholders_meeting = function() {
-          location.href = '/shareholders_meeting';
+        $scope.mk_shareholders_meeting = function() {
+          //location.href = '/shareholders_meeting';
+            location.href = '/mk_shareholders_meeting';
+
         };
       });
   </script>
@@ -25,13 +28,14 @@
     <div class="md-whiteframe-4dp" >
       <div  layout-padding>
           <md-toolbar >
-            <h3>선거방식을 선택해주세요</h3>
+            <h3>만들 선거 방식을 선택해주세요</h3>
           </md-toolbar>
           <div layout="row" ng-controller="AppCtrl">
-            <md-button flex="50" class="md-raised" ng-click="presidential_election()">대통령 선거</md-button>
-            <md-button flex="50" class="md-raised" ng-click="shareholders_meeting()">주주총회</md-button>
+            <md-button flex="50" class="md-raised" ng-click="mk_presidential_election()">대통령 선거</md-button>
+            <md-button flex="50" class="md-raised" ng-click="mk_shareholders_meeting()">주주총회</md-button>
           </div>
       </div>
+      생성된 선거들
     </div>
   </div>
 </body>
