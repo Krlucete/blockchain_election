@@ -1,0 +1,74 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.1/angular-messages.min.js"></script>
+
+  <script>
+    angular
+      .module('login_page', ['ngMaterial', 'ngMessages']);
+  </script>
+
+  <title>
+    로그인
+  </title>
+</head>
+
+<body ng-app="login_page" layout-padding>
+  <div class="md-whiteframe-4dp">
+    <md-toolbar layout-padding>
+      <h3 layout-margin>
+        <img flex="50" ng-src="/img/logo_deep_blue.png"/>
+      </h3>
+    </md-toolbar>
+    <form layout-padding name="login_form" action="/auth/login" method="post">
+      <div layout="column">
+        <md-input-container flex="5">
+          <label>
+            아이디
+          </label>
+          <input
+          type="text"
+          name="username"
+          ng-model="username"
+          required />
+
+          <div ng-messages="login_form.username.$error">
+            <p ng-message="required">아이디를 입력하세요</p>
+          </div>
+        </md-input-container>
+        <md-input-container flex="5">
+          <label>
+            비밀번호
+          </label>
+          <input
+          type="text"
+          name="password"
+          ng-model="password"
+          md-maxlength="12"
+          minlength="3"
+          required />
+
+          <div ng-messages="login_form.password.$error">
+            <p ng-message="required">비밀번호를 입력하세요</p>
+            <p ng-message="minlength">Password is too short.</p>
+            <p ng-message="md-maxlength">Password is too long.</p>
+          </div>
+
+        </md-input-container>
+
+        <div flex="5" layout="row" layout-align="center" layout-margin>
+          <md-button flex="grow" class="md-raised" type="submit">
+            로그인
+          </md-button>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>

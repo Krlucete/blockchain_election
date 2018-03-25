@@ -1,0 +1,75 @@
+<html>
+<head>
+  <title>Voter information</title>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+  <script>
+    angular
+      .module('VoterInfo', ['ngMaterial'])
+      .controller('list_controller', function($scope) {
+        $scope.candidate = [{
+            label: '1',
+            value: "문재인",
+            poster:"/img/poster_1.png",
+            data: "안녕하세요"
+          },
+          {
+            label: '2',
+            value: "홍준표",
+            poster:"/img/poster_2.png",
+            data: "메롱"
+          },
+          {
+            label: '3',
+            value: "안철수",
+            poster:"/img/poster_3.png",
+            data: "정대리입니다."
+          },
+        ];
+        $scope.selectedHuman = function(person) {
+          $scope.selected_person = person;
+        };
+      });
+  </script>
+</head>
+<body layout="column" flex ng-app="VoterInfo" layout="column">
+
+  <md-toolbar layout-align="center center" flex="10">
+    <div layout-margin flex="50">
+      logo
+    </div>
+    <h6 layout-margin layout-padding>후보자 정보</h6>
+  </md-toolbar>
+    <div flex = "80" class="container" layout="row" ng-controller="list_controller" flex>
+      <md-sidenav hide show-gt-xs md-is-locked-open="true" class="md-whiteframe-4dp">
+        <md-list>
+          <md-list-item ng-repeat="person in candidate">
+            <md-button ng-click="selectedHuman(person)">
+              {{person.label}} {{person.value}}
+            </md-button>
+          </md-list-item>
+        </md-list>
+      </md-sidenav>
+      <md-content id="content" flex layout-margin>
+        <div layout="column" flex >
+          <div layout="row" flex="5">
+            <md-button class="md-primary" href="/presidential_election">투표창으로 이동</md-button>
+            <md-button class="md-primary" href="/presidential_election">선거포스터 띄우기</md-button>
+          </div>
+          <div flex="10" >
+            <h2>{{selected_person.label}} {{selected_person.value}}</h2>
+          </div>
+          <div flex="30">
+            <!-- <img src= '{{selected_person.poster}}' /> -->
+          </div>
+        </div>
+      </md-content>
+    </div>
+
+
+
+</body>
+</html>
