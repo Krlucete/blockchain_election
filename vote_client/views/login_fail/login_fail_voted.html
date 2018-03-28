@@ -17,6 +17,9 @@
           header: '해당 번호는 이미 투표 완료 하셨습니다.',
           btn_msg: '투표권 재발급',
         };
+        $scope.path={
+          err_img:'/img/error.png'
+        }
 
       });
   </script>
@@ -37,7 +40,8 @@
         </div>
         <div flex="30" layout="column" layout-align="center center">
           <div>
-            ERR_IMG
+            <img ng-src={{path.err_img}} />
+
           </div>
         </div>
         <div flex="10" text-align="center">
@@ -64,13 +68,14 @@
         </div>
         <div flex="30" layout="column" layout-align="center center">
           <div>
-            IMG
+            <img ng-src={{path.err_img}} />
+
           </div>
         </div>
         <div flex="10" text-align="center">
         </div>
         <div flex="10" layout="row" layout-align="center" layout-margin>
-          <md-button class="md-raised" flex="grow" ng-click="finish_vote()">
+          <md-button class="md-raised" flex="grow" ng-click="retrun_login()">
             {{text.btn_msg}}
           </md-button>
         </div>
