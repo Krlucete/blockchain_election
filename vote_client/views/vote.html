@@ -26,20 +26,22 @@
         $scope.candidates = [{
             label: '1',
             party: '더불어민주당',
-            name: "문 재 인"
+            name: "문 재 인",
+            img: '/img/candidate_1.png',
           },
           {
             label: '2',
             party: '자유한국당',
-            name: "홍 준 표"
+            name: "홍 준 표",
+            img: '/img/candidate_2.png',
           },
           {
             label: '3',
             party: '국민의당',
-            name: "안 철 수"
+            name: "안 철 수",
+            img: '/img/candidate_3.png',
           },
         ];
-
         $scope.submit = function() {
           if ($scope.candidate.label == '0') {
             //후보자가 없는 경우 투표하는 조건을 다시 구성해야 한다.
@@ -81,7 +83,6 @@
       });
   </script>
 </head>
-
 <body ng-app="voting_paper" ng-controller="form_controller">
   <!-- 폰화면 -->
   <div hide show-xs flex layout-padding>
@@ -115,8 +116,8 @@
                         </div>
                         <div flex="10"></div>
                       </div>
-                      <div flex="20" layout-align="center center">
-                        img
+                      <div flex="10" layout-align="center center">
+                        <img ng-src={{candidate.img}} />
                       </div>
                     </div>
                     <md-divider></md-divider>
@@ -138,7 +139,6 @@
       </div>
     </div>
   </div>
-
   <!-- 웹화면 -->
   <div hide show-gt-xs flex>
     <div layout-margin class="md-whiteframe-4dp">
@@ -157,7 +157,6 @@
                     <md-radio-button layout-margin layout-padding ng-value="candidate">
                     </md-radio-button>
                   </div>
-
                   <div flex="10" layout-margin layout-padding>
                     {{ candidate.label }}
                   </div>
@@ -167,8 +166,8 @@
                   <div flex="40" layout-margin layout-padding>
                     {{ candidate.name }}
                   </div>
-                  <div flex="10">
-                    img
+                  <div flex="10" layout-align="center center">
+                    <img ng-src={{candidate.img}} />
                   </div>
                 </div>
                 <md-divider></md-divider>
