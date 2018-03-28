@@ -41,7 +41,7 @@
           <h4>{{text.header}}</h4>
       </md-toolbar>
       <div flex="90">
-        <md-content class="md-whiteframe-2dp">
+        <md-content>
             <md-tabs class="md-accent">
               <md-tab>
                 <md-tab-label>{{text.btn_left_msg}}</md-tab-label>
@@ -58,10 +58,6 @@
             </md-tabs>
           </md-content>
       </div>
-
-
-    <!-- <div flex="80" >
-    </div> -->
     </div>
   </div>
 
@@ -75,22 +71,22 @@
           {{text.header}}
         </div>
       </md-toolbar>
-    <div flex="10">
+    <div flex="90">
 
       <md-content>
           <md-tabs class="md-accent" md-center-tabs="true">
             <md-tab>
-              <md-tab-label>{{text.btn_left}}</md-tab-label>
+              <md-tab-label>{{text.btn_left_msg}}</md-tab-label>
               <md-tab-body>
-                <md-button class="md-raised" ng-click="presidential_election()">{{text.btn_left}}</md-button>
+                <md-button class="md-raised" ng-click="presidential_election()">{{text.btn_left_msg}}</md-button>
 
               </md-tab-body>
             </md-tab>
 
             <md-tab>
-              <md-tab-label>{{text.btn_right}}</md-tab-label>
+              <md-tab-label>{{text.btn_right_msg}}</md-tab-label>
               <md-tab-body>
-                <md-button class="md-raised" ng-click="shareholders_meeting()">{{text.btn_right}}</md-button>
+                <md-button class="md-raised" ng-click="shareholders_meeting()">{{text.btn_right_msg}}</md-button>
 
               </md-tab-body>
             </md-tab>
@@ -98,8 +94,6 @@
         </md-content>
 
 
-    </div>
-    <div flex="80" >
     </div>
     </div>
   </div>

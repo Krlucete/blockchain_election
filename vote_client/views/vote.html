@@ -11,7 +11,12 @@
     angular
       .module('voting_paper', ['ngMaterial'])
       .controller('form_controller', function($scope, $http) {
-
+        $scope.text = {
+          title: '투표',
+          btn_vote_msg: '투표',
+          btn_cancle_msg: '투표 취소',
+          btn_voter_info_msg: '후보자 정보 확인',
+        };
         $scope.candidate = {
           label: '0',
           party: '',
@@ -21,17 +26,17 @@
         $scope.candidates = [{
             label: '1',
             party: '더불어민주당',
-            name: "문재인"
+            name: "문 재 인"
           },
           {
             label: '2',
             party: '자유한국당',
-            name: "홍준표"
+            name: "홍 준 표"
           },
           {
             label: '3',
             party: '국민의당',
-            name: "안철수"
+            name: "안 철 수"
           },
         ];
 
@@ -75,123 +80,112 @@
         // };
       });
   </script>
-  <style>
-    #vote_paper {
-      float: center;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-      width: 40%;
-    }
-
-    .candidate_group {}
-
-    .candidate_label {
-      background-color: red;
-    }
-
-    .candidate_party {
-      background-color: powderblue;
-    }
-
-    .candidate_name {
-      background-color: green;
-    }
-  </style>
 </head>
 
-<body ng-app="voting_paper">
-
-  <div hide show-gt-xs flex>
-    <div id="vote_paper" layout-padding class="md-whiteframe-4dp">
-      <md-toolbar layout-padding>
-        <div flex>
-          <h3>큰 화면</h3>
-        </div>
-      </md-toolbar>
-
-      <form ng-submit="submit()" ng-controller="form_controller" ng-cloak="">
-        <div class="candidate_group" layout-padding layout-margin>
-          <md-radio-group ng-model="candidate">
-            <div layout="column" ng-repeat="candidate in candidates" >
-              <div layout="row" layout-padding layout-align="space-around center">
-                <md-radio-button flex="10" layout-margin layout-padding ng-value="candidate">
-                </md-radio-button>
-                <div flex="10" layout-margin layout-padding class="candidate_label">
-                  {{ candidate.label }}
+<body ng-app="voting_paper" ng-controller="form_controller">
+  <!-- 폰화면 -->
+  <div hide show-xs flex layout-padding>
+    <div class="md-whiteframe-4dp" flex layout="column">
+      <div flex="10">
+        <md-toolbar layout-align="center center" class="md-whiteframe-3dp">
+          <h4>{{text.title}}</h4>
+        </md-toolbar>
+      </div>
+      <div flex="80">
+        <form ng-submit="submit()" ng-cloak="">
+          <div flex layout="column">
+            <div flex="10"></div>
+            <div flex="50">
+              <md-radio-group ng-model="candidate">
+                <div layout="column" ng-repeat="candidate in candidates">
+                  <div style="height:60px;" layout-padding>
+                    <div layout="row">
+                      <div layout="column" flex="20" layout-align="center center">
+                        <md-radio-button ng-value="candidate"></md-radio-button>
+                      </div>
+                      <div layout="column" flex>
+                        <div flex="40">
+                          <div> {{ candidate.party }} </div>
+                        </div>
+                        <div flex="10"></div>
+                        <div layout="row" flex="40">
+                          <div flex="10"> {{ candidate.label }} </div>
+                          <div flex="10"></div>
+                          <div flex="60"> {{ candidate.name }} </div>
+                        </div>
+                        <div flex="10"></div>
+                      </div>
+                      <div flex="20" layout-align="center center">
+                        img
+                      </div>
+                    </div>
+                    <md-divider></md-divider>
+                  </div>
                 </div>
-                <div flex="40" hide show-gt-sm layout-margin layout-padding class="candidate_party">
-                  {{ candidate.party }}
-                </div>
-                <div flex="40" layout-margin layout-padding class="candidate_name">
-                  {{ candidate.name }}
-                </div>
-              </div>
-              <md-divider></md-divider>
-
+              </md-radio-group>
             </div>
-
-          </md-radio-group>
-        </div>
-        <div layout="column">
-          <md-button class="md-raised" type="submit">투표</md-button>
-        </div>
-        <div layout="row">
-          <md-button flex class="md-raised" href="/auth/logout" type="button">투표 취소</md-button>
-          <md-button flex class="md-raised" href="/voter_info" type="button">후보자 정보 확인</md-button>
-        </div>
-      </form>
+            <div flex="20">
+              <div layout="column">
+                <md-button class="md-raised" type="submit">{{text.btn_vote_msg}}</md-button>
+              </div>
+              <div layout="row">
+                <md-button flex class="md-raised" href="/auth/logout" type="button">{{text.btn_cancle_msg}}</md-button>
+                <md-button flex class="md-raised" href="/voter_info" type="button">{{text.btn_voter_info_msg}}</md-button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-
   </div>
-  <div hide-gt-xs flex>
+
+  <!-- 웹화면 -->
+  <div hide show-gt-xs flex>
     <div layout-margin class="md-whiteframe-4dp">
       <div layout-padding>
         <md-toolbar layout-padding>
           <div>
-            <h3>휴대폰 화면</h3>
+            <h3>{{text.title}}</h3>
           </div>
         </md-toolbar>
-
         <form ng-submit="submit()" ng-controller="form_controller" ng-cloak="">
-          <div class="candidate_group" layout-padding layout-margin>
+          <div layout-padding layout-margin>
             <md-radio-group ng-model="candidate">
-              <div layout="column" ng-repeat="candidate in candidates" >
+              <div layout="column" ng-repeat="candidate in candidates">
                 <div layout="row" layout-padding layout-align="space-around center">
-                  <md-radio-button flex="10" layout-margin layout-padding ng-value="candidate">
-                  </md-radio-button>
-                  <div flex="10" layout-margin layout-padding class="candidate_label">
+                  <div flex="10">
+                    <md-radio-button layout-margin layout-padding ng-value="candidate">
+                    </md-radio-button>
+                  </div>
+
+                  <div flex="10" layout-margin layout-padding>
                     {{ candidate.label }}
                   </div>
-                  <div flex="40" hide show-gt-sm layout-margin layout-padding class="candidate_party">
+                  <div flex="40" layout-margin layout-padding>
                     {{ candidate.party }}
                   </div>
-                  <div flex="40" layout-margin layout-padding class="candidate_name">
+                  <div flex="40" layout-margin layout-padding>
                     {{ candidate.name }}
+                  </div>
+                  <div flex="10">
+                    img
                   </div>
                 </div>
                 <md-divider></md-divider>
-
               </div>
-
             </md-radio-group>
           </div>
           <div layout="column">
-            <md-button class="md-raised" type="submit">투표</md-button>
+            <md-button class="md-raised" type="submit">{{text.btn_vote_msg}}</md-button>
           </div>
           <div layout="row">
-            <md-button flex class="md-raised" href="/auth/logout" type="button">투표 취소</md-button>
-            <md-button flex class="md-raised" href="/voter_info" type="button">후보자 정보 확인</md-button>
+            <md-button flex class="md-raised" href="/auth/logout" type="button">{{text.btn_cancle_msg}}</md-button>
+            <md-button flex class="md-raised" href="/voter_info" type="button">{{text.btn_voter_info_msg}}</md-button>
           </div>
         </form>
-
       </div>
-
     </div>
-
-
   </div>
-
 </body>
 
 </html>
