@@ -61,6 +61,6 @@ module.exports = function(app) {
       });
 
       app.get('/auth/login', function(req, res) {
-        res.render('login.html');
+        res.render('validate.html');
       });
     };
