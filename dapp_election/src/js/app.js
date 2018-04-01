@@ -80,11 +80,12 @@ App = {
       for (var i = 1; i <= candidatesCount; i++) {
         electionInstance.candidates(i).then(function(candidate) {
           var id = candidate[0];
-          var name = candidate[1];
-          var voteCount = candidate[2];
+          var party = candidate[1];
+          var name = candidate[2];
+          var voteCount = candidate[3];
 
           // Render candidate Result
-          var candidateTemplate = "<tr><th>" + id + "</th><td>" + name + "</td><td>" + voteCount + "</td></tr>"
+          var candidateTemplate = "<tr><th>" + id + "</th><td>" + party + "</td><td>" + name + "</td><td>" + voteCount +"</td></tr>"
           candidatesResults.append(candidateTemplate);
 
           // Render candidate ballot option
@@ -113,6 +114,8 @@ App = {
       // Wait for votes to update
       $("#content").hide();
       $("#loader").show();
+      // window.location.replace("localhost:7777");
+
     }).catch(function(err) {
       console.error(err);
     });

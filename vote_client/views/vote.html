@@ -1,4 +1,4 @@
-<html>
+<!-- <html>
 
 <head>
   <title>Voteing Paper</title>
@@ -65,26 +65,25 @@
                 });
           }
         };
-        // $scope.addItem = function() {
-        //   $scope.candidates.push({
-        //     label: label_cnt,
-        //     value: "미후보"
-        //   });
-        //   label_cnt++;
-        // };
-        // $scope.removeItem = function() {
-        //   if (label_cnt > 1) {
-        //     $scope.candidates.pop();
-        //     label_cnt--;
-        //   } else {
-        //     alert('삭제할 후보가 없습니다.');
-        //   }
-        // };
+        $scope.addItem = function() {
+          $scope.candidates.push({
+            label: label_cnt,
+            value: "미후보"
+          });
+          label_cnt++;
+        };
+        $scope.removeItem = function() {
+          if (label_cnt > 1) {
+            $scope.candidates.pop();
+            label_cnt--;
+          } else {
+            alert('삭제할 후보가 없습니다.');
+          }
+        };
       });
   </script>
 </head>
 <body ng-app="voting_paper" ng-controller="form_controller">
-  <!-- 폰화면 -->
   <div hide show-xs flex layout-padding>
     <div class="md-whiteframe-4dp" flex layout="column">
       <div flex="10">
@@ -139,7 +138,6 @@
       </div>
     </div>
   </div>
-  <!-- 웹화면 -->
   <div hide show-gt-xs flex>
     <div layout-margin class="md-whiteframe-4dp">
       <div layout-padding>
@@ -188,3 +186,4 @@
 </body>
 
 </html>
+ -->
