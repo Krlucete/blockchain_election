@@ -4,8 +4,8 @@ const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
-const server = app.listen(3000, function() {
-  console.log("Express server has started on port 3000")
+const server = app.listen(7777, function() {
+  console.log("Express server has started on port 7777")
 });
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
