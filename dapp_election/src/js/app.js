@@ -111,6 +111,9 @@ App = {
     App.contracts.Election.deployed().then(function(instance) {
       return instance.vote(candidateId, { from: App.account });
     }).then(function(result) {
+
+      window.location.replace("http://localhost:7777/vote_success");
+
       // Wait for votes to update
       $("#content").hide();
       $("#loader").show();

@@ -52,7 +52,7 @@ module.exports = function(app) {
                   req.session.username = name;
                   req.session.userid = id;
                   req.session.save(function() {
-                    res.render('vote.html');
+                    res.redirect('http://localhost:3000');
                   });
                 }
               }

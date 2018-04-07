@@ -15,7 +15,7 @@ contract Election {
 	// Fetch Candidate
 	mapping(uint => Candidate) public candidates;
 	// Store Candidates Count
-	uint public candidatesCount;
+	uint public candidatesCount = 0;
 
 	// voted event
 	event votedEvent (
