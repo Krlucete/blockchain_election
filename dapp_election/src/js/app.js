@@ -9,9 +9,13 @@ App = {
 
   initWeb3: function() {
     // TODO: change ganache to geth network and run mining 
-    App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
-    
+    var Web3 = require('web3');
+
+    App.web3Provider = new Web3.providers.HttpProvider('http://127.0.0.1:7545');    
     web3 = new Web3(App.web3Provider);
+
+    console.log(web3.version)
+
     // TODO: refactor conditional
     // if (typeof web3 !== 'undefined') {
     //   // If a web3 instance is already provided by Meta Mask.
@@ -23,6 +27,14 @@ App = {
     //   App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
     //   web3 = new Web3(App.web3Provider);
     // }
+
+    // if (typeof web3 !== 'undefined') {
+    //   web3 = new Web3(web3.currentProvider);
+    // } else {
+    //   // set the provider you want from Web3.providers
+    //   web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+    // }
+
     return App.initContract();
   },
 
@@ -69,6 +81,8 @@ App = {
         $("#accountAddress").html("Your Account: " + account);
       }
     });
+
+
 
     // Load contract data
     App.contracts.Election.deployed().then(function(instance) {

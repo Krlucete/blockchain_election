@@ -1,0 +1,19 @@
+=============== Apr 8, 2018 (KST) ===============
+21:11:37.281534 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+21:11:37.282041 db@open opening
+21:11:37.283092 version@stat F·[] S·0B[] Sc·[]
+21:11:37.283581 db@janitor F·2 G·0
+21:11:37.283610 db@open done T·1.549834ms
+21:11:37.283660 db@close closing
+21:11:37.283727 db@close done T·65.948µs
+=============== Apr 8, 2018 (KST) ===============
+21:11:37.284928 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+21:11:37.285105 version@stat F·[] S·0B[] Sc·[]
+21:11:37.285123 db@open opening
+21:11:37.285168 journal@recovery F·1
+21:11:37.285848 journal@recovery recovering @1
+21:11:37.304956 version@stat F·[] S·0B[] Sc·[]
+21:11:37.305932 db@janitor F·2 G·0
+21:11:37.305955 db@open done T·20.819917ms
+21:12:11.095368 db@close closing
+21:12:11.095776 db@close done T·402.642µs
