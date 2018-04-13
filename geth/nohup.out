@@ -1,0 +1,20 @@
+I0408 20:26:22.716660 cmd/utils/flags.go:615] WARNING: No etherbase set and no accounts found as default
+I0408 20:26:22.716804 ethdb/database.go:83] Allotted 128MB cache and 1024 file handles to /Users/lucas/dev/js/blockchain_eleection/geth/geth/chaindata
+I0408 20:26:22.722672 ethdb/database.go:176] closed db:/Users/lucas/dev/js/blockchain_eleection/geth/geth/chaindata
+I0408 20:26:22.723571 node/node.go:176] instance: Geth/v1.5.5-stable-ff07d548/darwin/go1.9.3
+I0408 20:26:22.723604 ethdb/database.go:83] Allotted 128MB cache and 1024 file handles to /Users/lucas/dev/js/blockchain_eleection/geth/geth/chaindata
+I0408 20:26:22.765452 eth/db_upgrade.go:346] upgrading db log bloom bins
+I0408 20:26:22.765541 eth/db_upgrade.go:354] upgrade completed in 97.119µs
+I0408 20:26:22.765574 eth/backend.go:191] Protocol Versions: [63 62], Network Id: 4444
+I0408 20:26:22.765849 eth/backend.go:219] Chain config: {ChainID: 0 Homestead: <nil> DAO: <nil> DAOSupport: false EIP150: <nil> EIP155: <nil> EIP158: <nil>}
+I0408 20:26:22.766218 core/blockchain.go:219] Last header: #0 [2caf7a8d…] TD=256
+I0408 20:26:22.766243 core/blockchain.go:220] Last block: #0 [2caf7a8d…] TD=256
+I0408 20:26:22.766258 core/blockchain.go:221] Fast block: #0 [2caf7a8d…] TD=256
+I0408 20:26:22.766879 p2p/server.go:342] Starting Server
+I0408 20:26:22.767126 p2p/server.go:610] Listening on [::]:30303
+I0408 20:26:22.767174 eth/backend.go:475] Automatic pregeneration of ethash DAG ON (ethash dir: /Users/lucas/.ethash)
+I0408 20:26:22.767718 eth/backend.go:482] checking DAG (ethash dir: /Users/lucas/.ethash)
+I0408 20:26:22.769382 node/node.go:341] IPC endpoint opened: /Users/lucas/dev/js/blockchain_eleection/geth/geth/geth.ipc
+I0408 20:26:22.769726 node/node.go:411] HTTP endpoint opened: http://0.0.0.0:4444
+I0408 20:26:22.769768 eth/backend.go:387] Cannot start mining without etherbase address: etherbase address must be explicitly specified
+Fatal: Failed to start mining: Cannot start mining without etherbase address: etherbase address must be explicitly specified
