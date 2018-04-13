@@ -87,3 +87,37 @@
 21:18:25.242204 table@remove removed @14
 21:18:25.242407 table@remove removed @9
 21:18:25.242615 table@remove removed @4
+=============== Apr 13, 2018 (KST) ===============
+17:00:25.220043 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+17:00:25.227706 version@stat F·[0 1] S·819B[0B 819B] Sc·[0.00 0.00]
+17:00:25.227795 db@open opening
+17:00:25.228025 journal@recovery F·2
+17:00:25.230300 journal@recovery recovering @17
+17:00:25.238736 journal@recovery recovering @28
+17:00:25.245097 memdb@flush created L0@29 N·2553 S·116KiB "\x01/H..\xda\x12\xac,v748":"\xfd\x90W..p\xfe\x96,v2197"
+17:00:25.245152 version@stat F·[1 1] S·117KiB[116KiB 819B] Sc·[0.25 0.00]
+17:00:25.247688 memdb@flush created L0@31 N·3 S·405B "Blo..ion,v2582":"eth..@\xf3{,v2583"
+17:00:25.268357 version@stat F·[2 1] S·118KiB[117KiB 819B] Sc·[0.50 0.00]
+17:00:25.268997 db@janitor F·8 G·3
+17:00:25.269022 db@janitor removing table-20
+17:00:25.269155 db@janitor removing manifest-29
+17:00:25.269255 db@janitor removing table-25
+17:00:25.269357 db@open done T·41.528655ms
+17:00:25.270756 db@close closing
+17:00:25.270875 db@close done T·116.68µs
+=============== Apr 13, 2018 (KST) ===============
+17:00:25.272026 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+17:00:25.272277 version@stat F·[2 1] S·118KiB[117KiB 819B] Sc·[0.50 0.00]
+17:00:25.272308 db@open opening
+17:00:25.272371 journal@recovery F·1
+17:00:25.293512 journal@recovery recovering @32
+17:00:25.314662 version@stat F·[2 1] S·118KiB[117KiB 819B] Sc·[0.50 0.00]
+17:00:25.315623 db@janitor F·5 G·0
+17:00:25.315652 db@open done T·43.33024ms
+17:05:54.604568 table@compaction L0·2 -> L1·1 S·118KiB Q·2588
+17:05:54.608454 table@build created L1@35 N·1196 S·81KiB "\x01/H..\xda\x12\xac,v748":"\xfd\x90W..p\xfe\x96,v2197"
+17:05:54.608537 version@stat F·[0 1] S·81KiB[0B 81KiB] Sc·[0.00 0.00]
+17:05:54.608922 table@compaction committed F-2 S-36KiB Ke·0 D·1377 T·4.275318ms
+17:05:54.609240 table@remove removed @31
+17:05:54.609493 table@remove removed @29
+17:05:54.609746 table@remove removed @19
