@@ -165,3 +165,13 @@
 18:30:08.073430 version@stat F·[2 1] S·82KiB[810B 81KiB] Sc·[0.50 0.00]
 18:30:08.074428 db@janitor F·5 G·0
 18:30:08.074456 db@open done T·50.26085ms
+18:38:15.134470 table@compaction L0·2 -> L1·1 S·82KiB Q·2596
+18:38:15.141557 table@build created L1@46 N·1196 S·81KiB "\x01/H..\xda\x12\xac,v748":"\xfd\x90W..p\xfe\x96,v2197"
+18:38:15.141676 version@stat F·[0 1] S·81KiB[0B 81KiB] Sc·[0.00 0.00]
+18:38:15.142376 table@compaction committed F-2 S-810B Ke·0 D·6 T·7.7638ms
+18:38:15.142755 table@remove removed @41
+18:38:15.143041 table@remove removed @36
+18:38:15.143351 table@remove removed @35
+=============== Apr 15, 2018 (KST) ===============
+15:47:08.357924 db@close closing
+15:47:08.358694 db@close done T·1.177319ms
