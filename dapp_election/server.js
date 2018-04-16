@@ -13,6 +13,7 @@ app.engine('html', require('ejs').renderFile);
 
 app.use(express.static('src'));
 app.use(express.static('public/client'));
+app.use(express.static('web3'));
 app.use(express.static('build/contracts'));
 
 app.use(bodyParser.urlencoded({

@@ -32,12 +32,16 @@ App = {
   },
   
   render: function() {
-
+        
   },
+
+  castVote: function() {
+
+      console.log("hello");  
+  }
 }
 
-$(function() {
-  $(window).load(function() {
-    App.init();
-  });
-});
+window.onload = function () {
+	App.init();
+	// App.castVote();
+}
