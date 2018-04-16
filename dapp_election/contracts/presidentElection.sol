@@ -126,12 +126,6 @@ contract presidentElection
         return false;
     }
 
-    function aaa() constant public returns(string)
-    {
-        return "asdf";        
-    }
-
-
     function getWinner() voteFinished constant public returns(string) 
     {
         if (isTie()) return "tie";

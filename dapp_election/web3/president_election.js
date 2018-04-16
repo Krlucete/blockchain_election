@@ -32,16 +32,19 @@ App = {
   },
   
   render: function() {
-        
+      // App.castVote();
   },
 
-  castVote: function() {
-
-      console.log("hello");  
+  castVote: function(_vote, _voter) {
+  	App.contracts.presidentElection.deployed().then(function(instance){
+  		electionInstance = instance;
+  		return electionInstance.castVote(_vote, _voter);
+  	}).then(function(result){
+  		console.log(_vote+"에게 투표완료했습니다.");
+  	});
   }
 }
 
 window.onload = function () {
 	App.init();
-	// App.castVote();
 }
