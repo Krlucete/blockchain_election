@@ -1,0 +1,113 @@
+<html>
+<head>
+  <title>Voter information</title>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+  <script>
+    angular
+      .module('VoterInfo', ['ngMaterial'])
+      .controller('voter_info_controller', function($scope) {
+        $scope.selectedHuman = function(person) {
+          $scope.selected_person = person;
+        };
+        $scope.text = {
+          header: '후보자정보',
+          btn_vote_msg: '투표창으로 이동',
+          btn_poster_msg: '선거포스터 띄우기',
+        };
+        $scope.candidates = [{
+            label: '1',
+            party: '더불어민주당',
+            name: "문 재 인",
+            poster: "/img/poster_1.png",
+            story: "사람이 먼저다",
+          },
+          {
+            label: '2',
+            party: '자유한국당',
+            name: "홍 준 표",
+            poster: "/img/poster_2.png",
+            story: "1"
+          },
+          {
+            label: '3',
+            party: '국민의당',
+            name: "안 철 수",
+            poster: "/img/poster_3.png",
+            story: "4차 산업혁명에 걸맞는 인재가 되겠다."
+          },
+        ];
+      });
+  </script>
+</head>
+<body ng-app="VoterInfo" ng-controller="voter_info_controller">
+  <!-- 작은화면 -->
+  <div hide show-xs layout-padding>
+    <div class="md-whiteframe-4dp" flex layout="column">
+      <md-toolbar flex="10" layout-align="center center" class="md-whiteframe-2dp">
+        <div class="md-title">
+          {{text.header}}
+        </div>
+      </md-toolbar>
+      <div flex="90">
+        <md-content>
+          <md-tabs class="md-accent">
+            <md-tab ng-repeat="candidate in candidates">
+              <md-tab-label>{{candidate.name}}</md-tab-label>
+              <md-tab-body text-align="center">
+                <div layout="column" flex>
+                  <div flex="10">
+                  </div>
+                  <div flex="60">
+                    {{candidate.story}}
+                  </div>
+                  <div layout="row" flex="10">
+                    <md-button class="md-primary" href="/presidential_election">{{text.btn_vote_msg}}</md-button>
+                  </div>
+                </div>
+              </md-tab-body>
+            </md-tab>
+          </md-tabs>
+        </md-content>
+      </div>
+    </div>
+  </div>
+
+  <!-- 큰화면 -->
+  <div hide show-gt-xs layout-padding>
+    <div class="md-whiteframe-4dp" flex layout="column">
+      <md-toolbar flex="10" layout-align="center center" class="md-whiteframe-2dp">
+        <div class="md-title">
+          {{text.header}}
+        </div>
+      </md-toolbar>
+      <div flex="90" class="container" layout="row" flex>
+        <md-sidenav hide show-gt-xs md-is-locked-open="true" class="md-whiteframe-4dp">
+          <md-list>
+            <md-list-item ng-repeat="candidate in candidates">
+              <md-button ng-click="selectedHuman(candidate)">
+                {{candidate.label}} {{candidate.name}}
+              </md-button>
+            </md-list-item>
+          </md-list>
+        </md-sidenav>
+        <md-content id="content" flex layout-margin>
+          <div layout="column" flex>
+            <div flex="10">
+            </div>
+            <div flex="60">
+              <h2>{{selected_person.story}}</h2>
+            </div>
+            <div layout="row" flex="10">
+              <md-button class="md-primary" href="/presidential_election">{{text.btn_vote_msg}}</md-button>
+            </div>
+          </div>
+        </md-content>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

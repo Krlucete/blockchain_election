@@ -1,0 +1,77 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>VOTE</title>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+  <script>
+    angular
+      .module('start_page_with_logo', ['ngMaterial'])
+      .controller('AppCtrl', function($scope) {
+        $scope.text = {
+          description: 'made by 유종의미',
+          btn: '선거하기',
+        };
+        $scope.go_to_list_page = function() {
+          location.href = '/select_page';
+
+        };
+      });
+  </script>
+</head>
+
+<body ng-app="start_page_with_logo" ng-controller="AppCtrl">
+
+  <!-- 작은화면 -->
+  <div hide show-xs flex layout="column">
+    <div flex="20"></div>
+    <div flex="40">
+      <div layout="row" layout-align="center center">
+        <img flex="50" ng-src="/img/logo_deep_blue.png" />
+      </div>
+    </div>
+    <div flex="25">
+
+    </div>
+    <div flex="10">
+      <div layout="row" flex layout-align="center center">
+        <md-button class="md-primary" ng-click="go_to_list_page()">
+          {{text.btn}}
+        </md-button>
+      </div>
+    </div>
+    <div flex="5"></div>
+  </div>
+
+  <!-- 큰화면 -->
+  <div hide show-gt-xs flex layout="column">
+    <div flex="20"></div>
+    <div flex="40">
+      <div layout="row" layout-align="center center">
+        <img flex="20" ng-src="/img/logo_deep_blue.png" />
+      </div>
+    </div>
+    <div flex="25">
+      <div layout="row" flex layout-align="center center">
+        <div class="md-body-2">
+          {{text.description}}
+        </div>
+      </div>
+    </div>
+    <div flex="10">
+      <div layout="row" flex layout-align="center center">
+        <md-button class="md-primary" ng-click="go_to_list_page()">
+          {{text.btn}}
+        </md-button>
+      </div>
+    </div>
+    <div flex="5"></div>
+  </div>
+
+</body>
+
+</html>

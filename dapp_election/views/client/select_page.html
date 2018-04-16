@@ -1,0 +1,102 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>VOTE</title>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+  <script>
+    angular
+      .module('select_page', ['ngMaterial'])
+      .controller('AppCtrl', function($scope) {
+        $scope.presidential_election = function() {
+          location.href = '/presidential_election';
+        };
+        $scope.shareholders_meeting = function() {
+          location.href = '/shareholders_meeting';
+        };
+
+        $scope.text = {
+          header:'선거방식을 선택해주세요',
+          btn_left_msg:'대통령 선거',
+          btn_right_msg:'주주총회',
+        };
+
+        // $scope.data = {
+        //   selectedIndex : 0,
+        // };
+        // $scope.data = {
+        //
+        // };
+      });
+  </script>
+</head>
+<body ng-app="select_page" ng-controller="AppCtrl">
+  <!-- 작은화면 -->
+  <div hide show-xs layout-padding>
+    <div class="md-whiteframe-4dp" flex layout="column">
+      <md-toolbar flex="10" layout-align="center center" class="md-whiteframe-3dp">
+          <h4>{{text.header}}</h4>
+      </md-toolbar>
+      <div flex="90">
+        <md-content>
+            <md-tabs class="md-accent">
+              <md-tab>
+                <md-tab-label>{{text.btn_left_msg}}</md-tab-label>
+                <md-tab-body>
+                  <md-button class="md-raised" ng-click="presidential_election()">{{text.btn_left_msg}}</md-button>
+                </md-tab-body>
+              </md-tab>
+              <md-tab>
+                <md-tab-label>{{text.btn_right_msg}}</md-tab-label>
+                <md-tab-body>
+                  <md-button class="md-raised" ng-click="shareholders_meeting()">{{text.btn_right_msg}}</md-button>
+                </md-tab-body>
+              </md-tab>
+            </md-tabs>
+          </md-content>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- 큰화면 -->
+  <div hide show-gt-xs layout-padding>
+    <div class="md-whiteframe-4dp" flex layout="column">
+      <md-toolbar flex="10" layout-align="center center" class="md-whiteframe-2dp">
+        <div class="md-title">
+          {{text.header}}
+        </div>
+      </md-toolbar>
+    <div flex="90">
+
+      <md-content>
+          <md-tabs class="md-accent" md-center-tabs="true">
+            <md-tab>
+              <md-tab-label>{{text.btn_left_msg}}</md-tab-label>
+              <md-tab-body>
+                <md-button class="md-raised" ng-click="presidential_election()">{{text.btn_left_msg}}</md-button>
+
+              </md-tab-body>
+            </md-tab>
+
+            <md-tab>
+              <md-tab-label>{{text.btn_right_msg}}</md-tab-label>
+              <md-tab-body>
+                <md-button class="md-raised" ng-click="shareholders_meeting()">{{text.btn_right_msg}}</md-button>
+
+              </md-tab-body>
+            </md-tab>
+          </md-tabs>
+        </md-content>
+
+
+    </div>
+    </div>
+  </div>
+
+</body>
+</html>
