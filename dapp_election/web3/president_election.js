@@ -35,12 +35,20 @@ App = {
       // App.castVote();
   },
 
-  castVote: function(_vote, _voter) {
+  // castVote: function(_vote, _voter) {
+  // 	App.contracts.presidentElection.deployed().then(function(instance){
+  // 		electionInstance = instance;
+  // 		return electionInstance.castVote(_vote, _voter);
+  // 	}).then(function(result){
+  // 		console.log(_vote+"에게 투표완료했습니다.");
+  // 	});
+  // }
+  test: function(name){
   	App.contracts.presidentElection.deployed().then(function(instance){
   		electionInstance = instance;
-  		return electionInstance.castVote(_vote, _voter);
+  		return electionInstance.test(name);
   	}).then(function(result){
-  		console.log(_vote+"에게 투표완료했습니다.");
+  		console.log(name+"에게 투표완료했습니다.");
   	});
   }
 }

@@ -164,4 +164,9 @@ contract presidentElection
         return voters[_voter].isRegistered;
     }
 
+    function test(string _name) public returns(string)
+    {
+        return _name;
+    }
+
 }
