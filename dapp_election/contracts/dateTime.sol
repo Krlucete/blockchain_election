@@ -1,5 +1,9 @@
 pragma solidity ^0.4.16;
 
+/*
+이 계약은 다른 계약에서 현재시각과 기한설정을 위한 계약
+*/
+
 contract DateTime {
         struct _DateTime {
                 uint16 year;
@@ -21,6 +25,7 @@ contract DateTime {
         uint16 constant ORIGIN_YEAR = 1970;
 
         function isLeapYear(uint16 year) public pure returns (bool) {
+            //윤년 계산
                 if (year % 4 != 0) {
                         return false;
                 }
@@ -34,11 +39,13 @@ contract DateTime {
         }
 
         function leapYearsBefore(uint year) public pure returns (uint) {
+            //이전 윤년
                 year -= 1;
                 return year / 4 - year / 100 + year / 400;
         }
 
         function getDaysInMonth(uint8 month, uint16 year) public pure returns (uint8) {
+            //해당 달에 며칠이 있는지
                 if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
                         return 31;
                 }
@@ -54,6 +61,7 @@ contract DateTime {
         }
 
         function parseTimestamp(uint timestamp) internal pure returns (_DateTime dt) {
+            //시간 계산
                 uint secondsAccountedFor = 0;
                 uint buf;
                 uint8 i;
@@ -94,6 +102,7 @@ contract DateTime {
         }
 
         function getYear(uint timestamp) public pure returns (uint16) {
+            //연도 계산
                 uint secondsAccountedFor = 0;
                 uint16 year;
                 uint numLeapYears;
@@ -118,26 +127,32 @@ contract DateTime {
         }
 
         function getMonth(uint timestamp) public pure returns (uint8) {
+            //달 계산
                 return parseTimestamp(timestamp).month;
         }
 
         function getDay(uint timestamp) public pure returns (uint8) {
+            //일 계산
                 return parseTimestamp(timestamp).day;
         }
 
         function getHour(uint timestamp) public pure returns (uint8) {
+            //시 계산
                 return uint8((timestamp / 60 / 60) % 24);
         }
 
         function getMinute(uint timestamp) public pure returns (uint8) {
+            //분 계산
                 return uint8((timestamp / 60) % 60);
         }
 
         function getNow() public returns(uint){
+            //현재 타임스탬프
             return now+3600*9;
         }
 
         function toTimestamp(uint16 year, uint8 month, uint8 day, uint8 hour, uint8 minute) public pure returns (uint timestamp) {
+            //연,월,일,시,분을 받아 타임스탬프로 변환
                 uint16 i;
 
                 // Year
