@@ -52,19 +52,15 @@ contract stockholderElection
         voteManager = 0xca35b7d915458ef540ade6068dfe2f44e8fa733c;
     }
     
-    function startVote(uint _maxStockCount, uint _votePhaseLengthInSeconds, 
-                                  string _choice1, 
-                                  string _choice2) public voteFinished ownerShip
+    function startVote(uint _maxStockCount, uint _votePhaseLengthInSeconds) public voteFinished ownerShip
     {
         require(_votePhaseLengthInSeconds >= MIN_VOTE_TIME);
         votePhaseEndTime = now + _votePhaseLengthInSeconds;
         resetVoteCount();
         maxStockCount = _maxStockCount;
-        numCandidates = 2;
+        numCandidates = 0;
         winnerIndex = 0;
         tieIndex = 0;
-        candidate[1] = _choice1;
-        candidate[2] = _choice2;
         electionID++;
     }
 
