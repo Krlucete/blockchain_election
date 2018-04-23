@@ -21,23 +21,22 @@ contract presidentElection
     struct voter
     {
         uint electionID;
-        bool isRegistered;
     }
     
     //Modifiers
-    modifier voteUnFinished{
+    modifier voteUnFinished{ //투표 미종료
         require(maxVoteCount >= totalVoteCount);
         _;
     }
-    modifier voteFinished {
+    modifier voteFinished {//투표 종료
         require(now > votePhaseEndTime);
         _;
     }
-    modifier ownerShip{
+    modifier ownerShip{//관리자만 접근
         require(msg.sender == owner);
         _;
     }
-    modifier voterShip{
+    modifier voterShip{//적법한 계정인지 확인
         require(msg.sender == voteManager);
         _;
     }
@@ -46,7 +45,7 @@ contract presidentElection
     event logInt(uint);
     event voteWinner(string, string);
 
-    function presidentElection() {
+    function presidentElection() { //소유자와 투표자 지정
         owner = msg.sender;
         voteManager = 0xca35b7d915458ef540ade6068dfe2f44e8fa733c;
     }
@@ -54,6 +53,8 @@ contract presidentElection
 
     function startVote(uint _maxVoteCount, uint _votePhaseLengthInSeconds) public voteFinished ownerShip
     {
+        //투표 설정, 시작과 종료 시간으로 수정할 것, 예약 투표의 경우 다른 투표 시작 안되게해야함
+        //투표자 수 설정
         require(_votePhaseLengthInSeconds >= MIN_VOTE_TIME);
         votePhaseEndTime = now + _votePhaseLengthInSeconds;
         resetVoteCount();
@@ -66,6 +67,7 @@ contract presidentElection
 
     function resetVoteCount() private
     {
+        //투표수 리셋
         for (uint i=1; i<=numCandidates; i++)
         {
             voteCount[i] = 0;
@@ -75,21 +77,17 @@ contract presidentElection
 
     function addCandidate(string _name) public
     {
+        //후보자 등록
         require(numCandidates <= 20);
         numCandidates += 1;
         candidate[numCandidates] = _name;
     }
 
-    function register(string _voter) public
-    {
-        voters[_voter].isRegistered = true;
-    }
-
     function castVote(uint _vote, string _voter) public voteUnFinished
     {
+        //투표
         require(maxVoteCount > totalVoteCount);
         require(!getHasVoted(_voter));
-        require(getRegistrationStatus(_voter));
         if (now > votePhaseEndTime) return;
 
         // record the vote
@@ -108,6 +106,7 @@ contract presidentElection
 
     function countVotes() voteFinished public
     {
+        //투표 집계
         for (uint i=1; i<= numCandidates; i++)
         {
             if (voteCount[i] == voteCount[winnerIndex]) tieIndex = i;
@@ -117,6 +116,7 @@ contract presidentElection
 
     function isTie() constant private voteFinished returns(bool)
     {
+        //무승부 확인
         if (voteCount[winnerIndex] == voteCount[tieIndex] 
             && winnerIndex != tieIndex
             && winnerIndex != 0
@@ -126,23 +126,27 @@ contract presidentElection
 
     function getWinner() voteFinished constant public returns(string) 
     {
+        //승자
         if (isTie()) return "tie";
         return candidate[winnerIndex];
     }
 
     function getTieWinner() voteFinished constant public returns(string, string)
     {
+        //무승부 승자
         require(isTie());
         return (candidate[winnerIndex], candidate[tieIndex]);
     }
 
     function intToCandidate(uint _index) constant public returns(string) 
     {
+        //후보자 인덱스로 후보자 이름
         return candidate[_index];
     }
 
     function candidateToInt(string _name) constant public returns(uint)
     {
+        //후보자 이름으로 후보자 인덱스
         bytes32 nameHash = sha3(_name);
         for (uint i=1; i<=numCandidates; i++)
         {
@@ -154,17 +158,9 @@ contract presidentElection
 
     function getHasVoted(string _voter) constant private returns(bool) 
     {
+        //투표자 투표했는지 확인
         return voters[_voter].electionID == electionID;
     }
 
-    function getRegistrationStatus(string _voter) constant private returns(bool)
-    {
-        return voters[_voter].isRegistered;
-    }
-
-    function test(string _name) public returns(string)
-    {
-        return _name;
-    }
 
 }
