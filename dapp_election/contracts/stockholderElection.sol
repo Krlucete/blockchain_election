@@ -1,5 +1,7 @@
 pragma solidity ^0.4.7;
 
+import "./dateTime.sol";
+
 contract stockholderElection
 {
     mapping(uint => uint) voteCount; 
