@@ -2,12 +2,13 @@ pragma solidity ^0.4.7;
 
 import "./dateTime.sol";
 
-contract presidentElection
+contract presidentElection is DateTime
 {
     mapping(uint => uint) voteCount; 
     mapping(uint => string) candidate; 
     mapping(string => voter) voters;
     uint public numCandidates;
+    uint public votePhaseStartTime;
     uint public votePhaseEndTime;
     uint public winnerIndex;
     uint public tieIndex;
@@ -24,8 +25,8 @@ contract presidentElection
     }
     
     //Modifiers
-    modifier voteUnFinished{ //투표 미종료
-        require(maxVoteCount >= totalVoteCount);
+    modifier voteAlreadyStarted{ //투표 설정후 미시작 상태
+        require(now > votePhaseStartTime);
         _;
     }
     modifier voteFinished {//투표 종료
@@ -51,12 +52,15 @@ contract presidentElection
     }
     
 
-    function startVote(uint _maxVoteCount, uint _votePhaseLengthInSeconds) public voteFinished ownerShip
+    function startVote(uint _maxVoteCount, uint16 _year, uint8 _month, uint8 _day, uint8 _hour,
+        uint8 _minute, uint8 _endHour) public voteAlreadyStarted voteFinished ownerShip
     {
-        //투표 설정, 시작과 종료 시간으로 수정할 것, 예약 투표의 경우 다른 투표 시작 안되게해야함
+        //투표 설정
         //투표자 수 설정
-        require(_votePhaseLengthInSeconds >= MIN_VOTE_TIME);
-        votePhaseEndTime = now + _votePhaseLengthInSeconds;
+        require((3600*_endHour) >= MIN_VOTE_TIME);
+        uint timeStamp = toTimestamp(_year,_month,_day,_hour,_minute);
+        votePhaseStartTime = timeStamp;
+        votePhaseEndTime = timeStamp + (3600*_endHour);
         resetVoteCount();
         maxVoteCount = _maxVoteCount;
         numCandidates = 0;
@@ -83,7 +87,7 @@ contract presidentElection
         candidate[numCandidates] = _name;
     }
 
-    function castVote(uint _vote, string _voter) public voteUnFinished
+    function castVote(uint _vote, string _voter) public voteAlreadyStarted
     {
         //투표
         require(maxVoteCount > totalVoteCount);

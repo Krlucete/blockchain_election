@@ -2,12 +2,13 @@ pragma solidity ^0.4.7;
 
 import "./dateTime.sol";
 
-contract stockholderElection
+contract stockholderElection is DateTime
 {
     mapping(uint => uint) voteCount; 
     mapping(uint => string) candidate; 
     mapping(string => voter) voters;
     uint public numCandidates;
+    uint public votePhaseStartTime;
     uint public votePhaseEndTime;
     uint public winnerIndex;
     uint public tieIndex;
@@ -26,8 +27,8 @@ contract stockholderElection
     }
     
     //Modifiers
-    modifier voteUnFinished{
-        require(maxStockCount >= totalVoteCount);
+    modifier voteAlreadyStarted{ //투표 설정후 미시작 상태
+        require(now > votePhaseStartTime);
         _;
     }
     modifier voteFinished { 
@@ -52,10 +53,13 @@ contract stockholderElection
         voteManager = 0xca35b7d915458ef540ade6068dfe2f44e8fa733c;
     }
     
-    function startVote(uint _maxStockCount, uint _votePhaseLengthInSeconds) public voteFinished ownerShip
+    function startVote(uint _maxStockCount, uint16 _year, uint8 _month, uint8 _day, uint8 _hour,
+        uint8 _minute, uint8 _endHour) public voteAlreadyStarted voteFinished ownerShip
     {
-        require(_votePhaseLengthInSeconds >= MIN_VOTE_TIME);
-        votePhaseEndTime = now + _votePhaseLengthInSeconds;
+        require((3600*_endHour) >= MIN_VOTE_TIME);
+        uint timeStamp = toTimestamp(_year,_month,_day,_hour,_minute);
+        votePhaseStartTime = timeStamp;
+        votePhaseEndTime = timeStamp + (3600*_endHour);
         resetVoteCount();
         maxStockCount = _maxStockCount;
         numCandidates = 0;
@@ -85,7 +89,7 @@ contract stockholderElection
         voters[_voter].isRegistered = true;
     }
     
-    function castMandate(string _voted, string _voter) public voteUnFinished {
+    function castMandate(string _voted, string _voter) public voteAlreadyStarted {
         require(getRegistrationStatus(_voted));
         require(getRegistrationStatus(_voter));
          if (now > votePhaseEndTime) return;
@@ -102,7 +106,7 @@ contract stockholderElection
          
     }
 
-    function castVote(uint _vote, string _voter) public voteUnFinished
+    function castVote(uint _vote, string _voter) public voteAlreadyStarted
     {
         require(!getHasVoted(_voter));
         require(getRegistrationStatus(_voter));
