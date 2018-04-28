@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Vote_president;
 
+use App\Vote_president;
 use App\Candidate_president;
 
 class VoteController extends Controller
@@ -42,8 +42,7 @@ class VoteController extends Controller
     {
         $from = $request->from;
         $to = $request ->to;
-        $candidate_name = $request ->candidate_name;
-        $candidate_info = $request->candidate_info;
+        $candidates = $request->candidates;
 
         //db에 넣고 화면을 다시보여줘야해
         //db부터넣자
@@ -55,15 +54,24 @@ class VoteController extends Controller
         $Vote_president->date_fin = $to;
         $Vote_president->save(); //INSERT 구문
         $result= Vote_president::orderBy('id', 'desc')->first(); //방금 넣은  row 가져옴
-
         // $테이블명 -> 테이블 column name = $변수 명
-        $Candidate_president->candidate_name = $candidates; //배열
-        $Candidate_president->candidate_info = $info; //배열
-        $Candidate_president->vote_president_id = $result->id ; //배열
         
-        $Candidate_president->save(); //INSERT 구문
+        $total_array = array();
+   
+        for($count = 0; $count < $candidates; $count++){
+            
+            $temp_name = "candidates_name".$count;
+            $temp_info = "info".$count;
 
+            $candidate_name = $request -> $temp_name;
+            $candidate_info = $request -> $temp_info;
+            
+            $temp_array = array('candidate_name'=>$candidate_name, 'candidate_info'=> $candidate_info,'vote_president_id'=> $result->id );
+            array_push($total_array,$temp_array);
 
+        }
+        Candidate_president::insert($total_array); // multi array 사용할 때는 위에 처럼하세욥.
+        
         return view('main.index');
     }
 
@@ -99,6 +107,7 @@ class VoteController extends Controller
     public function update(Request $request, $id)
     {
         //
+
     }
 
     /**

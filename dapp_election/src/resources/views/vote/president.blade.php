@@ -61,7 +61,7 @@
                     <div class="space-60 hidden visible-xs"></div>
                     <div class="page-title">
                         <div class="space-10"></div>
-                        <h3 class="dark-color wow fadeInUp" data-wow-delay="0.4s">대통령선거</h3>
+                        <h3 class="dark-color wow fadeInUp" data-wow-delay="0.4s">주주총회선거</h3>
                         <div class="space-20"></div>
                         <div class="desc wow fadeInUp" data-wow-delay="0.6s">
                             
@@ -78,8 +78,17 @@
                                     <div style="" class="space-10"></div>
                                     <script type='text/javascript'>
                                         function addFields(){
-                                            var name[10];
-                                            var info[10];
+                                            var name = new Array();
+                                            var info = new Array();
+                                            // info.push 하구 넣쟈아
+
+                                            $( "#yes" ).click(function() {
+                                                //CHECK here for the checkbox;
+                                                if(checked) alert();
+                                                $( "#form" ).submit();
+                                                });
+
+
                                             // Number of inputs to create
                                             var number = document.getElementById("candidates").value;
                                             // Container <div> where dynamic content will be placed
@@ -94,7 +103,7 @@
                                                 // Create an <input> element, set its type and name attributes
                                                 var input = document.createElement("input");
                                                 input.type = "text";
-                                                input.name = "candidates" + i;
+                                                input.name = "candidates_name" + i;
                                                 input.placeholder = "후보자이름";
                                                 container.appendChild(input);
                                                 var info = document.createElement("input");
@@ -107,17 +116,14 @@
                                             }
                                         }
                                     </script>
-                                    <input type="text" id="candidates" name="candidates" value="">Number of : (max. 10)<br />
-                                    <a href="#" id="filldetails" onclick="addFields()">Fill Details</a>
+                                    후보자 수 : <input type="text" id="candidates" name="candidates" value="">(최대. 10)<br />
+                                    <a href="#" id="filldetails" onclick="addFields()" class="bttn-default wow fadeInUp" data-wow-delay="0.8s">후보자 이름, 정보 입력하기</a>
                                     <div id="num_of_input"/>
-
-                                    <input class="control" type="text" name="candidate_name" placeholder="후보자이름" required=""><br>
-                                    <input class="control" type="text" name="candidate_info" placeholder="후보자정보" required=""><br>
                                 </div>
                             <div style="" class="space-30"></div>
                             
                             <div class="space-50"></div>
-                            <button type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s">투표지확인</button>
+                            <button id="yes" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s">투표지확인</button>
 
                             </form>
                             </div>
