@@ -13,6 +13,7 @@
     src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
+
   <script src="truffle-contract.js"></script>
   <script src="president_election.js"></script>
 
@@ -66,7 +67,7 @@
                 }
               })
               .then(function(response) {
-                  App.test($scope.candidate.label);
+                  App.castVote($scope.candidate.label);
                   console.log("posted successfully");
                   // location.href = '/vote_success';
                 },
