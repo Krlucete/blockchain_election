@@ -48,19 +48,22 @@ contract presidentElection is DateTime
 
     function presidentElection() { //소유자와 투표자 지정
         owner = msg.sender;
-        voteManager = 0xca35b7d915458ef540ade6068dfe2f44e8fa733c;
+        voteManager = msg.sender;
     }
     
+    function isVoteFinished() constant public voteFinished returns(bool){
+        return (now > votePhaseEndTime);
+    }
 
     function startVote(uint _maxVoteCount, uint16 _year, uint8 _month, uint8 _day, uint8 _hour,
-        uint8 _minute, uint8 _endHour) public voteAlreadyStarted voteFinished ownerShip
+        uint8 _minute, uint8 _endHour) constant public voteAlreadyStarted voteFinished ownerShip
     {
         //투표 설정
         //투표자 수 설정
         require((3600*_endHour) >= MIN_VOTE_TIME);
         uint timeStamp = toTimestamp(_year,_month,_day,_hour,_minute);
         votePhaseStartTime = timeStamp;
-        votePhaseEndTime = timeStamp + (3600*_endHour);
+        votePhaseEndTime = timeStamp + (60*_endHour);
         resetVoteCount();
         maxVoteCount = _maxVoteCount;
         numCandidates = 0;
@@ -79,7 +82,7 @@ contract presidentElection is DateTime
         totalVoteCount =0;
     }
 
-    function addCandidate(string _name) public
+    function addCandidate(string _name) constant public
     {
         //후보자 등록
         require(numCandidates <= 20);
@@ -87,7 +90,7 @@ contract presidentElection is DateTime
         candidate[numCandidates] = _name;
     }
 
-    function castVote(uint _vote, string _voter) public voteAlreadyStarted
+    function castVote(uint _vote, string _voter) constant public voteAlreadyStarted
     {
         //투표
         require(maxVoteCount > totalVoteCount);
@@ -108,7 +111,7 @@ contract presidentElection is DateTime
         }
     }
 
-    function countVotes() voteFinished public
+    function countVotes() voteFinished constant public
     {
         //투표 집계
         for (uint i=1; i<= numCandidates; i++)
@@ -164,6 +167,11 @@ contract presidentElection is DateTime
     {
         //투표자 투표했는지 확인
         return voters[_voter].electionID == electionID;
+    }
+
+     function test(string _name) constant public returns(string)
+    {
+        return _name;
     }
 
 
