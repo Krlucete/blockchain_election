@@ -12,3 +12,6 @@ MySQL
 // 작업디렉: C:\Users\USER\hyunah\election
 // 깃헙디렉: C:\Users\USER\Documents\blockchain_election\dapp_election\
 // src\app
+
+// css 위치: public > css
+// images 위치: public 
