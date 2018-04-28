@@ -1,0 +1,10 @@
+
+miner.start(1)
+coinbase
+miner.coinbase
+miner.coinbase()
+eth.coinbase
+eth.defaultAccount = eth.coinbase;
+miner.stop
+miner.stop()
+ls

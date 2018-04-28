@@ -72,6 +72,38 @@ App = {
     });
   },
 
+ countVotes: function(){
+    App.contracts.presidentElection.deployed().then(function(instance){
+      electionInstance = instance;
+      return electionInstance.countVotes();
+    }).then(function(result){
+        console.log("countVotes");
+    });
+  },
+
+  getWinner: function(){
+    App.contracts.presidentElection.deployed().then(function(instance){
+      electionInstance = instance;
+      return electionInstance.getWinner();
+    }).then(function(result){
+      console.log("getWinner");
+    });
+  },
+
+  isVoteFinished: function(){
+    App.contracts.presidentElection.deployed().then(function(instance){
+      electionInstance = instance;
+      return electionInstance.isVoteFinished();
+    }).then(function(result){
+      if(result==true){
+        return true;
+      }else{
+        return false;
+      }
+    });
+  },
+
+
   test: function(name){
   	App.contracts.presidentElection.deployed().then(function(instance){
   		electionInstance = instance;
@@ -80,9 +112,19 @@ App = {
   		console.log(name+"에게 투표완료했습니다.");
   	});
   },
+
+  test2: function(){
+    App.contracts.presidentElection.deployed().then(function(instance){
+      electionInstance = instance;
+      return electionInstance.test("테스트");
+    }).then(function(result){
+      console.log("정상동작");
+    });
+  },
+
   render: function() {
-    App.startVote(5,2018,4,28,6,35,1);
-    App.addCandidate("A");
+    App.startVote(5,2018,4,28,7,35,5);
+    App.addCandidate("A")
     App.addCandidate("B");
     App.addCandidate("C");
   }

@@ -51,6 +51,9 @@ contract presidentElection is DateTime
         voteManager = msg.sender;
     }
     
+    function isVoteFinished() constant public voteFinished returns(bool){
+        return (now > votePhaseEndTime);
+    }
 
     function startVote(uint _maxVoteCount, uint16 _year, uint8 _month, uint8 _day, uint8 _hour,
         uint8 _minute, uint8 _endHour) constant public voteAlreadyStarted voteFinished ownerShip
@@ -60,7 +63,7 @@ contract presidentElection is DateTime
         require((3600*_endHour) >= MIN_VOTE_TIME);
         uint timeStamp = toTimestamp(_year,_month,_day,_hour,_minute);
         votePhaseStartTime = timeStamp;
-        votePhaseEndTime = timeStamp + (3600*_endHour);
+        votePhaseEndTime = timeStamp + (60*_endHour);
         resetVoteCount();
         maxVoteCount = _maxVoteCount;
         numCandidates = 0;
@@ -108,7 +111,7 @@ contract presidentElection is DateTime
         }
     }
 
-    function countVotes() voteFinished public
+    function countVotes() voteFinished constant public
     {
         //투표 집계
         for (uint i=1; i<= numCandidates; i++)
