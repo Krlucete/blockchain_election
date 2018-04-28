@@ -50,8 +50,9 @@ contract presidentElection
     }
     
 
-    function startVote(uint _maxVoteCount, uint _votePhaseLengthInSeconds
-                                  ) public voteFinished ownerShip
+    function startVote(uint _maxVoteCount, uint _votePhaseLengthInSeconds, 
+                                  string _choice1, 
+                                  string _choice2) public voteFinished ownerShip
     {
         require(_votePhaseLengthInSeconds >= MIN_VOTE_TIME);
         votePhaseEndTime = now + _votePhaseLengthInSeconds;
@@ -60,6 +61,8 @@ contract presidentElection
         numCandidates = 2;
         winnerIndex = 0;
         tieIndex = 0;
+        candidate[1] = _choice1;
+        candidate[2] = _choice2;
         electionID++;
     }
 
@@ -84,9 +87,11 @@ contract presidentElection
         voters[_voter].isRegistered = true;
     }
 
-    function castVote(uint _vote) public voteUnFinished
+    function castVote(uint _vote, string _voter) public voteUnFinished
     {
         require(maxVoteCount > totalVoteCount);
+        require(!getHasVoted(_voter));
+        require(getRegistrationStatus(_voter));
         if (now > votePhaseEndTime) return;
 
         // record the vote
@@ -94,6 +99,7 @@ contract presidentElection
         {
             voteCount[_vote] += 1;
             totalVoteCount += 1;
+            voters[_voter].electionID = electionID;
             logString("Vote counted.");
         }  
         else 

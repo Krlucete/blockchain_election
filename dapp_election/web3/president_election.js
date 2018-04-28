@@ -10,7 +10,6 @@ App = {
   initWeb3: function() {
     App.web3Provider = new Web3.providers.HttpProvider('http://127.0.0.1:7545');    
     web3 = new Web3(App.web3Provider);
-    web3.eth.defaultAccount = web3.eth.accounts[0];
     return App.initPresidentContract();
   },
 
@@ -36,27 +35,22 @@ App = {
       // App.castVote();
   },
 
-  castVote: function(_vote) {
-  	App.contracts.presidentElection.deployed().then(function(instance){
-  		electionInstance = instance;
-  		return electionInstance.castVote(_vote);
-  	}).then(function(result){
-  		console.log(_vote+"에게 투표완료했습니다.");
-  	});
-  }
-  
-  // test: function(name){
-  //   console.log(name);
-
+  // castVote: function(_vote, _voter) {
   // 	App.contracts.presidentElection.deployed().then(function(instance){
   // 		electionInstance = instance;
-  // 		return electionInstance.test(name);
+  // 		return electionInstance.castVote(_vote, _voter);
   // 	}).then(function(result){
-  // 		console.log(name+"에게 투표완료했습니다.");
+  // 		console.log(_vote+"에게 투표완료했습니다.");
   // 	});
   // }
-
-  
+  test: function(name){
+  	App.contracts.presidentElection.deployed().then(function(instance){
+  		electionInstance = instance;
+  		return electionInstance.test(name);
+  	}).then(function(result){
+  		console.log(name+"에게 투표완료했습니다.");
+  	});
+  }
 }
 
 window.onload = function () {
