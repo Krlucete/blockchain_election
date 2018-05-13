@@ -40,24 +40,12 @@ App = {
     });
   },
 
-
-  castVote: function(_vote, _voter){
-    App.contracts.presidentElection.deployed().then(function(instance){
-      electionInstance = instance;
-      return electionInstance.castVote(_vote, _voter);
-    }).then(function(result){
-      console.log("castVote");
-
-    });
-  },
-
   addCandidate: function(_name){
     App.contracts.presidentElection.deployed().then(function(instance){
       electionInstance = instance;
       return electionInstance.addCandidate(_name);
     }).then(function(result){
-            console.log("addcandidate");
-
+      console.log("addcandidate");
     });
   },
 
@@ -67,6 +55,7 @@ App = {
       return electionInstance.countVotes();
     }).then(function(result){
         console.log("countVotes");
+
     });
   },
 
@@ -76,18 +65,49 @@ App = {
       return electionInstance.getWinner();
     }).then(function(result){
       console.log("getWinner");
+      console.log(result);
+
+    });
+  },
+
+  castVote: function(_vote, _voter){
+    App.contracts.presidentElection.deployed().then(function(instance){
+      electionInstance = instance;
+      return electionInstance.castVote(_vote, _voter);
+    }).then(function(result){
+      console.log("castVote");
+       App.getCoinbaseBalance();
+       
+
     });
   },
 
   getTieWinner: function(){
     App.contracts.presidentElection.deployed().then(function(instance){
       electionInstance = instance;
-      winner=electionInstance.getTieWinner();
       return electionInstance.getTieWinner();
-    }).then(function(result){
-      console.log(winner);
+    }).then(
+      function(result){
       console.log("getTieWinner");
     });
+  },
+
+  
+
+  test: function(){
+    App.contracts.presidentElection.deployed()
+    .then(
+      function(instance){
+      testInstance = instance;
+      return testInstance.test.call();
+      }
+    )
+    .then(
+      function(value){
+      console.log("success");
+      console.log(value);
+    }
+    );
   },
 
   getCoinbaseBalance: function(){
@@ -101,17 +121,13 @@ App = {
   },
 
   render: function() {
-    App.startVote(5,2018,4,29,19,14,5);
 
-    var accounts = web3.eth.accounts;
-    console.log(accounts);
+    App.startVote(5,2018,5,13,10,31,5);
 
     App.addCandidate("A");
     App.addCandidate("B");
-    App.addCandidate("C");
 
     App.countVotes();
-    App.getTieWinner();
   }
 }
 

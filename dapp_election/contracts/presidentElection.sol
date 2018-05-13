@@ -18,6 +18,7 @@ contract presidentElection is DateTime
     uint MIN_VOTE_TIME = 30;
     address public owner;
     address public voteManager;
+    string abc = "abc";
 
     struct voter
     {
@@ -79,7 +80,7 @@ contract presidentElection is DateTime
         {
             voteCount[i] = 0;
         }
-        totalVoteCount =0;
+        totalVoteCount = 0;
     }
 
     function addCandidate(string _name) constant public
@@ -169,9 +170,9 @@ contract presidentElection is DateTime
         return voters[_voter].electionID == electionID;
     }
 
-     function test(string _name) constant public returns(string)
+     function test() constant public returns(string)
     {
-        return _name;
+        return abc;
     }
 
 
