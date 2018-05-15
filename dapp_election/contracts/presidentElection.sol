@@ -18,7 +18,6 @@ contract presidentElection is DateTime
     uint MIN_VOTE_TIME = 30;
     address public owner;
     address public voteManager;
-    string abc = "abc";
 
     struct voter
     {
@@ -27,19 +26,19 @@ contract presidentElection is DateTime
     
     //Modifiers
     modifier voteAlreadyStarted{ //투표 설정후 미시작 상태
-        require(now > votePhaseStartTime);
+        require((now+3600*9) > votePhaseStartTime);
         _;
     }
     modifier voteFinished {//투표 종료
-        require(now > votePhaseEndTime);
+        require((now+3600*9) > votePhaseEndTime);
         _;
     }
     modifier ownerShip{//관리자만 접근
-        require(msg.sender == owner);
+        require(owner == msg.sender);
         _;
     }
     modifier voterShip{//적법한 계정인지 확인
-        require(msg.sender == voteManager);
+        require(voteManager == msg.sender);
         _;
     }
 
@@ -52,19 +51,16 @@ contract presidentElection is DateTime
         voteManager = msg.sender;
     }
     
-    function isVoteFinished() constant public voteFinished returns(bool){
-        return (now > votePhaseEndTime);
-    }
 
     function startVote(uint _maxVoteCount, uint16 _year, uint8 _month, uint8 _day, uint8 _hour,
-        uint8 _minute, uint8 _endHour) constant public voteAlreadyStarted voteFinished ownerShip
+        uint8 _minute, uint8 _endHour) voteAlreadyStarted voteFinished ownerShip public
     {
         //투표 설정
         //투표자 수 설정
         require((3600*_endHour) >= MIN_VOTE_TIME);
         uint timeStamp = toTimestamp(_year,_month,_day,_hour,_minute);
         votePhaseStartTime = timeStamp;
-        votePhaseEndTime = timeStamp + (60*_endHour);
+        votePhaseEndTime = timeStamp + (3600*_endHour);
         resetVoteCount();
         maxVoteCount = _maxVoteCount;
         numCandidates = 0;
@@ -80,10 +76,10 @@ contract presidentElection is DateTime
         {
             voteCount[i] = 0;
         }
-        totalVoteCount = 0;
+        totalVoteCount =0;
     }
 
-    function addCandidate(string _name) constant public
+    function addCandidate(string _name) public
     {
         //후보자 등록
         require(numCandidates <= 20);
@@ -91,11 +87,11 @@ contract presidentElection is DateTime
         candidate[numCandidates] = _name;
     }
 
-    function castVote(uint _vote, string _voter) constant public voteAlreadyStarted
+    function castVote(uint _vote) voteAlreadyStarted public
     {
         //투표
         require(maxVoteCount > totalVoteCount);
-        require(!getHasVoted(_voter));
+        //require(!getHasVoted(_voter));
         if (now > votePhaseEndTime) return;
 
         // record the vote
@@ -103,7 +99,7 @@ contract presidentElection is DateTime
         {
             voteCount[_vote] += 1;
             totalVoteCount += 1;
-            voters[_voter].electionID = electionID;
+            //voters[_voter].electionID = electionID;
             logString("Vote counted.");
         }  
         else 
@@ -112,7 +108,7 @@ contract presidentElection is DateTime
         }
     }
 
-    function countVotes() voteFinished constant public
+    function countVotes() voteFinished public
     {
         //투표 집계
         for (uint i=1; i<= numCandidates; i++)
@@ -164,16 +160,6 @@ contract presidentElection is DateTime
         return 0;
     }
 
-    function getHasVoted(string _voter) constant private returns(bool) 
-    {
-        //투표자 투표했는지 확인
-        return voters[_voter].electionID == electionID;
-    }
-
-     function test() constant public returns(string)
-    {
-        return abc;
-    }
 
 
 }
