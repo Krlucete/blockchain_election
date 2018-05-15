@@ -34,16 +34,17 @@ App = {
   startVote: function(_maxVoteCount, _year, _month, _day, _hour, _minute, _endHour){
     App.contracts.presidentElection.deployed().then(function(instance){
       electionInstance = instance;
-      return electionInstance.startVote(_maxVoteCount, _year, _month, _day, _hour, _minute, _endHour);
+      return electionInstance.startVote(_maxVoteCount, _year, _month, _day, _hour, _minute, _endHour, {from: App.account});
     }).then(function(result){
       console.log("startVote");
+    }).catch(function(e) {
     });
   },
 
   addCandidate: function(_name){
     App.contracts.presidentElection.deployed().then(function(instance){
       electionInstance = instance;
-      return electionInstance.addCandidate(_name);
+      return electionInstance.addCandidate(_name, {from: App.account});
     }).then(function(result){
       console.log("addcandidate");
     });
@@ -52,7 +53,7 @@ App = {
  countVotes: function(){
     App.contracts.presidentElection.deployed().then(function(instance){
       electionInstance = instance;
-      return electionInstance.countVotes();
+      return electionInstance.countVotes( {from: App.account});
     }).then(function(result){
         console.log("countVotes");
 
@@ -65,7 +66,7 @@ App = {
       return electionInstance.getWinner();
     }).then(function(result){
       console.log("getWinner");
-      console.log(result);
+      console.log(result.toNumber());
 
     });
   },
@@ -77,8 +78,6 @@ App = {
     }).then(function(result){
       console.log("castVote");
        App.getCoinbaseBalance();
-       
-
     });
   },
 
@@ -89,7 +88,9 @@ App = {
     }).then(
       function(result){
       console.log("getTieWinner");
-    });
+    }).catch(function(e) {
+  // There was an error! Handle it.
+})  ;
   },
 
   
@@ -104,7 +105,7 @@ App = {
     )
     .then(
       function(value){
-      console.log("success");
+              console.log("success");
       console.log(value);
     }
     );
@@ -128,6 +129,8 @@ App = {
     App.addCandidate("B");
 
     App.countVotes();
+
+    App.test();
   }
 }
 
