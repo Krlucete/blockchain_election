@@ -24,12 +24,12 @@
     <link rel="stylesheet" href="/post_inc/datetimepicker/bootstrap-datepicker.css">
 <script src="/post_inc/datetimepicker/bootstrap-datepicker.js"></script>
 
-<!-- <link rel="stylesheet" href="/post_inc/datetimepicker/bootstrap-datetimepicker.css">
-<script src="/post_inc/datetimepicker/bootstrap-datetimepicker.js"></script> -->
+<script src="../../../../web3/president_election.js"></script>
+<script src="../../../../web3/truffle-contract.js"></script>
 
-<link rel="stylesheet" href="/post_inc/datetimepicker/bootstrap-datetimepicker_3d.css">
+<link rel="stylesheet" href="/post_inc/datetimepicker/bootstrap-datepicker_3d.css">
 <script src="/post_inc/datetimepicker/moment-with-locales.js"></script>
-<script src="/post_inc/datetimepicker/bootstrap-datetimepicker_3d.js"></script>
+<script src="/post_inc/datetimepicker/bootstrap-datepicker_3d.js"></script>
     <!-- date picker-->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -48,7 +48,7 @@
     <!-- MainMenu-Area -->
     <nav class="mainmenu-area" data-spy="affix" data-offset-top="200">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/index.html"><img src="images/logo.png" alt="Logo"></a>
+            <a class="navbar-brand" href="/"><img src="images/logo.png" alt="Logo"></a>
         </div>
     </nav>
     <!-- MainMenu-Area-End -->
@@ -61,7 +61,7 @@
                     <div class="space-60 hidden visible-xs"></div>
                     <div class="page-title">
                         <div class="space-10"></div>
-                        <h3 class="dark-color wow fadeInUp" data-wow-delay="0.4s">주주총회선거</h3>
+                        <h3 class="dark-color wow fadeInUp" data-wow-delay="0.4s">대통령선거</h3>
                         <div class="space-20"></div>
                         <div class="desc wow fadeInUp" data-wow-delay="0.6s">
                             
@@ -69,11 +69,13 @@
                             <form id="mc-form" action="/president" method="POST">
                                 {{ csrf_field()}}
                                 <div class="col-md-12 col-sm-10">
-                                    <input class="control" type="text" id="from" name="from" placeholder="시작 날짜" style="width:150px; "><br>
+                                    시작일시: <input class="control" type="text" id="from" name="from" placeholder="2018-05-15 08:00"  style="width:250px;"/>
                                     <div style="" class="space-10"></div>
-                                    <input class="control" type="text" id="to" name="to" placeholder="마지막 날짜" style="width:150px;">
-                                </div>              
-                                <br/>
+                                    종료일시: <input class="control" type="text" id="to" name="to" placeholder="2018-05-16 18:00" style="width:250px;"/>
+                                    <div style="" class="space-10"></div>
+                                    <hr>
+                                </div>   
+                                
                                     
                                     <div style="" class="space-10"></div>
                                     <script type='text/javascript'>
@@ -83,6 +85,7 @@
                                             // info.push 하구 넣쟈아
 
                                             $( "#yes" ).click(function() {
+                                                App.test("asdf");
                                                 //CHECK here for the checkbox;
                                                 if(checked) alert();
                                                 $( "#form" ).submit();
@@ -116,7 +119,7 @@
                                             }
                                         }
                                     </script>
-                                    후보자 수 : <input type="text" id="candidates" name="candidates" value="">(최대. 10)<br />
+                                    후보자 수 : <input type="text" id="candidates" name="candidates" value=""> (최대 10) <div style="" class="space-10"></div>
                                     <a href="#" id="filldetails" onclick="addFields()" class="bttn-default wow fadeInUp" data-wow-delay="0.8s">후보자 이름, 정보 입력하기</a>
                                     <div id="num_of_input"/>
                                 </div>
@@ -167,10 +170,11 @@
     <script>
         //datepicker
         $(function() {
-            $("#from").datepicker({
+            //$("#from").datetimepicker({
+                $("#from").datepicker({
                 defaultDate: "+w",
                 changeMonth: true,
-                dateFormat: 'yy-mm-dd',
+                dateFormat: 'yy-mm-dd hh:ii',
                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
                 monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
 
@@ -180,15 +184,18 @@
                 }
             });
             $("#to").datepicker({
-
                 defaultDate: "+w",
                 changeMonth: true,
-                dateFormat: 'yy-mm-dd',
+                dateFormat: 'yy-mm-dd hh:ii',
                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
                 monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                language : 'ko', pickTime : false, defalutDate : new Date(),
 
                 onClose: function(selectedDate) {
                     $("#from").datepicker("option", "maxDate", selectedDate);
+                    // $("#from").datepicker().data("option", "maxDate", selectedDate);
+            //  $('#to').datetimepicker({format:"YYYY-MM-DD HH:mm:ss"}).data('DateTimePicker').date(new Date(1985,11,01,11,30,21));
+            //  $('#from').datetimepicker({format:"YYYY-MM-DD HH:mm:ss"}).data('DateTimePicker').date(new Date(1985,11,01,11,30,21));
                 }
             });
         });

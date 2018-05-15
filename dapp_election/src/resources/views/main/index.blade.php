@@ -76,7 +76,7 @@
                         <p>선거를 제작하고, 투표를 진행하세요!</p>
                     </div>
                     <div class="space-20"></div>
-                    <a href="/login" class="bttn-white wow fadeInUp" data-wow-delay="0.8s"><i class="lnr lnr-download"></i>로그인하기</a>
+                    <a href="/login" class="bttn-white wow fadeInUp" data-wow-delay="0.8s">로그인하기</a>
                 </div>
             </div>
         </div>
@@ -131,7 +131,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-md-12">
-            <span>선거관리위원회 | 경기도 과천시 홍촌말로 44 중앙선거관리위원회 [13809] <i class="lnr lnr-heart" aria-hidden="true"></i> by 유종의 미</span>
+            <span>선거관리위원회 | 경기도 과천시 홍촌말로 44 중앙선거관리위원회 [13809] by 유종의 미</span>
                     </div>
                 </div>
             </div>

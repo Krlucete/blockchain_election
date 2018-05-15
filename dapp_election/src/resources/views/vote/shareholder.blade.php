@@ -24,12 +24,9 @@
     <link rel="stylesheet" href="/post_inc/datetimepicker/bootstrap-datepicker.css">
 <script src="/post_inc/datetimepicker/bootstrap-datepicker.js"></script>
 
-<!-- <link rel="stylesheet" href="/post_inc/datetimepicker/bootstrap-datetimepicker.css">
-<script src="/post_inc/datetimepicker/bootstrap-datetimepicker.js"></script> -->
-
-<link rel="stylesheet" href="/post_inc/datetimepicker/bootstrap-datetimepicker_3d.css">
+<link rel="stylesheet" href="/post_inc/datetimepicker/bootstrap-datepicker_3d.css">
 <script src="/post_inc/datetimepicker/moment-with-locales.js"></script>
-<script src="/post_inc/datetimepicker/bootstrap-datetimepicker_3d.js"></script>
+<script src="/post_inc/datetimepicker/bootstrap-datepicker_3d.js"></script>
     <!-- date picker-->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>

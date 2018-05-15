@@ -14,11 +14,11 @@ module.exports = function(app) {
         const is_voted = 1;
         var sql = "select * from citizens where name=\'" + uname + "\' AND resident_num = \'" + pwd + "\'";
         var conn = mysql.createConnection({
-          host: 'localhost',
-          user: 'root',
-          password: 'j2dxro3r',
-          port: '3307',
-          database: 'voter'
+          host: 'kyhdb.cjnpxidk6u8p.ap-northeast-2.rds.amazonaws.com',
+          user: 'kyhkissme',
+          password: 'dydrkfl1',
+          port: '3306',
+          database: 'hyuna'
         });
         conn.connect();
 

@@ -8,3 +8,7 @@ eth.defaultAccount = eth.coinbase;
 miner.stop
 miner.stop()
 ls
+miner.start(1)
+truffle migrage ?reset
+truffle migrate -reset
+truffle migrate --reset

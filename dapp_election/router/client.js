@@ -45,11 +45,11 @@ module.exports = function(app) {
     var sql = "UPDATE citizens SET is_voted = 0 WHERE id = \'" + req.session.userid + "\'";
 
     var conn = mysql.createConnection({
-      host: 'localhost',
-      user: 'root',
-      password: 'j2dxro3r',
-      port: '3307',
-      database: 'voter'
+        host: 'kyhdb.cjnpxidk6u8p.ap-northeast-2.rds.amazonaws.com',
+        user: 'kyhkissme',
+        password: 'dydrkfl1',
+        port: '3306',
+        database: 'hyuna'
     });
     conn.connect();
     conn.query(sql, function(err) {

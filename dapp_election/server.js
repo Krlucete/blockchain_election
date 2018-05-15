@@ -28,11 +28,11 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store: new MySQLStore({
-    host: 'localhost',
-    port: 3307,
-    user: 'root',
-    password: 'j2dxro3r',
-    database: 'voter'
+    host: 'kyhdb.cjnpxidk6u8p.ap-northeast-2.rds.amazonaws.com',
+    user: 'kyhkissme',
+    password: 'dydrkfl1',
+    port: '3306',
+    database: 'hyuna'
   })
 }));
 //router
