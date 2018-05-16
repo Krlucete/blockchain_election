@@ -498,3 +498,40 @@
 13:03:36.493396 table@compaction committed F~ S-186KiB Ke·0 D·8903 T·244.2792ms
 13:03:36.497311 table@remove removed @107
 13:03:36.499343 table@remove removed @106
+=============== May 15, 2018 (KST) ===============
+18:20:43.098468 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+18:20:43.098893 version@stat F·[0 2] S·2MiB[0B 2MiB] Sc·[0.00 0.02]
+18:20:43.098922 db@open opening
+18:20:43.099012 journal@recovery F·2
+18:20:43.101169 journal@recovery recovering @110
+18:20:43.116414 journal@recovery recovering @127
+18:20:43.126518 memdb@flush created L0@128 N·9597 S·518KiB "\x00.#..\xd6P\xca,v53026":"\xff\xf7\xd7..1\xc4A,v48795"
+18:20:43.126557 version@stat F·[1 2] S·2MiB[518KiB 2MiB] Sc·[0.25 0.02]
+18:20:43.149342 memdb@flush created L0@130 N·5935 S·297KiB "\x00l\x13..~\x80v,v64088":"\xffڝ..\xfa\xb2\xd9,v66140"
+18:20:43.150197 version@stat F·[2 2] S·3MiB[815KiB 2MiB] Sc·[0.50 0.02]
+18:20:43.151201 db@janitor F·8 G·2
+18:20:43.151226 db@janitor removing table-129
+18:20:43.151447 db@janitor removing manifest-128
+18:20:43.151628 db@open done T·52.689156ms
+18:20:43.154026 db@close closing
+18:20:43.154216 db@close done T·187.686µs
+=============== May 15, 2018 (KST) ===============
+18:20:43.155910 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+18:20:43.156159 version@stat F·[2 2] S·3MiB[815KiB 2MiB] Sc·[0.50 0.02]
+18:20:43.156184 db@open opening
+18:20:43.156244 journal@recovery F·1
+18:20:43.175294 journal@recovery recovering @131
+18:20:43.195315 version@stat F·[2 2] S·3MiB[815KiB 2MiB] Sc·[0.50 0.02]
+18:20:43.196795 db@janitor F·6 G·0
+18:20:43.196833 db@open done T·40.633193ms
+18:25:42.847668 table@compaction L0·2 -> L1·2 S·3MiB Q·68186
+18:25:42.899223 table@build created L1@134 N·24054 S·2MiB "\x00\x05\b..9\x88\x0f,v14745":"r\x00\x00..\x81=\xf4,v35289"
+18:25:42.918647 table@build created L1@135 N·6796 S·1MiB "r\x00\x00..\r\xf8\x10,v35307":"\xff\xf7\xd7..1\xc4A,v48795"
+18:25:42.918718 version@stat F·[0 2] S·3MiB[0B 3MiB] Sc·[0.00 0.03]
+18:25:42.919008 table@compaction committed F-2 S-60KiB Ke·0 D·8084 T·71.272011ms
+18:25:42.919226 table@remove removed @130
+18:25:42.919392 table@remove removed @128
+18:25:42.919719 table@remove removed @112
+18:25:42.919883 table@remove removed @113
+18:27:51.648034 db@close closing
+18:27:51.648183 db@close done T·146.815µs
