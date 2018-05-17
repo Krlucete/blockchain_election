@@ -4,7 +4,7 @@ pragma solidity ^0.4.16;
 이 계약은 다른 계약에서 현재시각과 기한설정을 위한 계약
 */
 
-contract DateTime {
+contract dateTime {
         struct _DateTime {
                 uint16 year;
                 uint8 month;

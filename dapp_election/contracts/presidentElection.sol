@@ -2,7 +2,7 @@ pragma solidity ^0.4.7;
 
 import "./dateTime.sol";
 
-contract presidentElection is DateTime
+contract presidentElection is dateTime
 {
     mapping(uint => uint) voteCount; 
     mapping(uint => string) candidate; 
