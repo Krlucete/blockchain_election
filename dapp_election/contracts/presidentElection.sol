@@ -160,6 +160,8 @@ contract presidentElection is DateTime
         return 0;
     }
 
-
+    function test() public returns(uint){
+        return numCandidates;
+    }
 
 }
