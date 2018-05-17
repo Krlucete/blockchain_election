@@ -55,7 +55,7 @@ contract presidentElection is dateTime
     event logInt(uint);
     event voteWinner(string, string);
 
-    function presidentElection() { //소유자와 투표자 지정
+    function presidentElection() public { //소유자와 투표자 지정
         owner = msg.sender;
         voteManager = msg.sender;
         setTime=false;
@@ -95,7 +95,7 @@ contract presidentElection is dateTime
         totalVoteCount =0;
     }
 
-    function addCandidate(string _name) voteFinished public
+    function addCandidate(string _name)  public
     {
         //후보자 등록
         require(numCandidates <= 9);
@@ -177,7 +177,7 @@ contract presidentElection is dateTime
     }
 
     function test() public returns(uint){
-        return numCandidates;
+        return totalVoteCount;
     }
 
 }
