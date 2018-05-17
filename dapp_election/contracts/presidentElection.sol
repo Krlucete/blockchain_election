@@ -103,24 +103,24 @@ contract presidentElection is dateTime
         candidate[numCandidates] = _name;
     }
 
-    function castVote(uint _vote) voteAlreadyStarted public
+    function castVote() voteAlreadyStarted public
     {
         //투표
         require(maxVoteCount > totalVoteCount);
-        //require(!getHasVoted(_voter));
+        ////require(!getHasVoted(_voter));
         if (now > votePhaseEndTime) return;
 
         // record the vote
-        if (_vote <= numCandidates) 
+        if (1 <= numCandidates) 
         {
-            voteCount[_vote] += 1;
+            voteCount[1] += 1;
             totalVoteCount += 1;
-            //voters[_voter].electionID = electionID;
-            logString("Vote counted.");
+            ////voters[_voter].electionID = electionID;
+            // logString("Vote counted.");
         }  
         else 
         {
-            logString("Vote could not be read!");
+            // logString("Vote could not be read!");
         }
     }
 
@@ -177,7 +177,7 @@ contract presidentElection is dateTime
     }
 
     function test() public returns(uint){
-        return totalVoteCount;
+        return maxVoteCount;
     }
 
 }

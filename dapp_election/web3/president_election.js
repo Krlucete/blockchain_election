@@ -84,12 +84,13 @@ App = {
     });
   },
 
-  castVote: function(_vote){
+  castVote: function(){
     App.contracts.presidentElection.deployed().then(function(instance){
       electionInstance = instance;
-      return electionInstance.castVote(_vote, {from: App.coinbase});
+      return electionInstance.castVote( {from: App.coinbase});
     }).then(function(result){
       console.log("castVote");
+      console.log(result);
     }).catch(function(e){
       console.log("e_castVote");
     });
