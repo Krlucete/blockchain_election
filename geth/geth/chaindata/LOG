@@ -654,3 +654,5 @@
 13:53:51.751590 table@remove removed @14
 13:53:51.752080 table@remove removed @9
 13:53:51.753300 table@remove removed @4
+14:20:22.578318 db@close closing
+14:20:22.586139 db@close done T·8.4698ms
