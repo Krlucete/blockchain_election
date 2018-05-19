@@ -27,10 +27,10 @@ App = {
   },
 
   //using contract
-  startVote: function(_maxVoteCount, _endHour){
+  startVote: function(_maxVoteCount){
     App.contracts.presidentElection.deployed().then(function(instance){
       electionInstance = instance;
-      return electionInstance.startVote(_maxVoteCount, _endHour, {from: App.coinbase});
+      return electionInstance.startVote(_maxVoteCount, {from: App.coinbase});
     }).then(function(result){
       console.log("startVote");
       App.addCandidate("A");
@@ -61,6 +61,16 @@ App = {
       console.log("e_setTimeStamp");
     });
   },
+  setEndTimeStamp: function(_year, _month, _day, _hour, _minute){
+    App.contracts.presidentElection.deployed().then(function(instance){
+      electionInstance = instance;
+      return electionInstance.setEndTimeStamp(_year, _month, _day, _hour, _minute, {from: App.coinbase});
+    }).then(function(result){
+      console.log("setEndTimeStamp");
+    }).catch(function(e){
+      console.log("e_setEndTimeStamp");
+    });
+  },
 
  countVotes: function(){
     App.contracts.presidentElection.deployed().then(function(instance){
@@ -87,7 +97,7 @@ App = {
   castVote: function(){
     App.contracts.presidentElection.deployed().then(function(instance){
       electionInstance = instance;
-      return electionInstance.castVote( {from: App.coinbase});
+      return electionInstance.castVote( 1, {from: App.coinbase});
     }).then(function(result){
       console.log("castVote");
       console.log(result);
@@ -123,8 +133,9 @@ App = {
   //using web3
 
   render: function() {
-    App.setTimeStamp(2018,5,17,15,45);
-    App.startVote(5,2);
+    App.setTimeStamp(2018,5,19,16,1);
+    App.setEndTimeStamp(2018,5,19,16,45);
+    App.startVote(5);
   
     App.test();
   }
