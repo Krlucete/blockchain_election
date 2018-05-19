@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="/post_inc/datetimepicker/bootstrap-datepicker.css">
 <script src="/post_inc/datetimepicker/bootstrap-datepicker.js"></script>
 
+<!--========= web3 ====================================================================-->
 <script src="../../../../web3/president_election.js"></script>
 <script src="../../../../web3/truffle-contract.js"></script>
 
@@ -107,12 +108,12 @@
                                                 var input = document.createElement("input");
                                                 input.type = "text";
                                                 input.name = "candidates_name" + i;
-                                                input.placeholder = "후보자이름";
+                                                input.placeholder = "후보자 이름";
                                                 container.appendChild(input);
                                                 var info = document.createElement("input");
                                                 info.type = "text";
                                                 info.name = "info" + i;
-                                                info.placeholder = "후보자정보";
+                                                info.placeholder = "후보자 정당";
                                                 container.appendChild(info);
                                                 // Append a line break 
                                                 container.appendChild(document.createElement("br"));
@@ -170,7 +171,6 @@
     <script>
         //datepicker
         $(function() {
-            //$("#from").datetimepicker({
                 $("#from").datepicker({
                 defaultDate: "+w",
                 changeMonth: true,
@@ -193,9 +193,6 @@
 
                 onClose: function(selectedDate) {
                     $("#from").datepicker("option", "maxDate", selectedDate);
-                    // $("#from").datepicker().data("option", "maxDate", selectedDate);
-            //  $('#to').datetimepicker({format:"YYYY-MM-DD HH:mm:ss"}).data('DateTimePicker').date(new Date(1985,11,01,11,30,21));
-            //  $('#from').datetimepicker({format:"YYYY-MM-DD HH:mm:ss"}).data('DateTimePicker').date(new Date(1985,11,01,11,30,21));
                 }
             });
         });
