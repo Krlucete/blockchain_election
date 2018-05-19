@@ -183,6 +183,7 @@
                     $("#to").datepicker("option", "minDate", selectedDate);
                 }
             });
+
             $("#to").datepicker({
                 defaultDate: "+w",
                 changeMonth: true,
@@ -195,6 +196,10 @@
                     $("#from").datepicker("option", "maxDate", selectedDate);
                 }
             });
+
+            
+            var date = $('#from').datepicker(selectedDate);
+            console.log(date);
         });
     </script>
                   
