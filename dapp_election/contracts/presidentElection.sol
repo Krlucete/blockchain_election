@@ -56,7 +56,7 @@ contract presidentElection is dateTime
         votePhaseStartTime = toTimestamp(_year,_month,_day,_hour,_minute);
     }
     function setEndTimeStamp(uint16 _year, uint8 _month, uint8 _day, uint8 _hour,
-        uint8 _minute) voteAlreadyStarted voteFinished ownerShip public
+        uint8 _minute) voteFinished ownerShip public
     {
         require(setEndTime == false);
         setEndTime = true;
@@ -67,8 +67,6 @@ contract presidentElection is dateTime
     {
         //투표 설정
         //투표자 수 설정
-        require(setTime == true);
-        require(setEndTime == true);
         resetVoteCount();
         maxVoteCount = _maxVoteCount;
         numCandidates = 0;
