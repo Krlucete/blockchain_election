@@ -55,7 +55,7 @@ contract presidentElection is dateTime
         setTime = true;
         votePhaseStartTime = toTimestamp(_year,_month,_day,_hour,_minute);
     }
-    function setENDTimeStamp(uint16 _year, uint8 _month, uint8 _day, uint8 _hour,
+    function setEndTimeStamp(uint16 _year, uint8 _month, uint8 _day, uint8 _hour,
         uint8 _minute) voteAlreadyStarted voteFinished ownerShip public
     {
         require(setEndTime == false);
