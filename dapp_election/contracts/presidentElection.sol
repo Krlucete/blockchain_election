@@ -16,6 +16,7 @@ contract presidentElection is dateTime
     uint public totalVoteCount;
     uint public maxVoteCount;
     bool public setTime;
+    bool public setEndTime;
     uint MIN_VOTE_TIME = 30;
     address public owner;
     address public voteManager;
@@ -38,14 +39,6 @@ contract presidentElection is dateTime
         require(owner == msg.sender);
         _;
     }
-    modifier setTimeModi{
-        require(setTime == false);
-        _;
-    }
-    modifier alreadySetTimeModi{
-        require(setTime == true);
-        _;
-    }
     modifier voterShip{//적법한 계정인지 확인
         require(voteManager == msg.sender);
         _;
@@ -62,12 +55,19 @@ contract presidentElection is dateTime
     }
     
     function setTimeStamp(uint16 _year, uint8 _month, uint8 _day, uint8 _hour,
-        uint8 _minute) setTimeModi voteAlreadyStarted voteFinished ownerShip public
+        uint8 _minute) voteAlreadyStarted voteFinished ownerShip public
     {
+        require(setTime == false);
         setTime = true;
         votePhaseStartTime = toTimestamp(_year,_month,_day,_hour,_minute);
     }
-    
+    function setENDTimeStamp(uint16 _year, uint8 _month, uint8 _day, uint8 _hour,
+        uint8 _minute) voteAlreadyStarted voteFinished ownerShip public
+    {
+        require(setEndTime == false);
+        setEndTime = true;
+        votePhaseEndTime = toTimestamp(_year,_month,_day,_hour,_minute);
+    }
 
     function startVote(uint _maxVoteCount, uint _endHour) alreadySetTimeModi voteAlreadyStarted
         voteFinished ownerShip public
@@ -75,13 +75,15 @@ contract presidentElection is dateTime
         //투표 설정
         //투표자 수 설정
         require((3600*_endHour) >= MIN_VOTE_TIME);
-        votePhaseEndTime = votePhaseStartTime + (3600*_endHour);
+        require(setTime == true);
+        require(setEndTime == true);
         resetVoteCount();
         maxVoteCount = _maxVoteCount;
         numCandidates = 0;
         winnerIndex = 0;
         tieIndex = 0;
         setTime = false;
+        setEndTime = false;
         //electionID++;
     }
 
@@ -177,7 +179,7 @@ contract presidentElection is dateTime
     }
 
     function test() public returns(uint){
-        return maxVoteCount;
+        return totalVoteCount;
     }
 
 }

@@ -91,6 +91,7 @@ App = {
     }).then(function(result){
       console.log("castVote");
       console.log(result);
+      App.test();
     }).catch(function(e){
       console.log("e_castVote");
     });
