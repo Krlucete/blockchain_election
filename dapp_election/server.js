@@ -13,6 +13,7 @@ app.engine('html', require('ejs').renderFile);
 
 app.use(express.static('src'));
 app.use(express.static('src/public'));
+app.use(express.static('src/resources'));
 
 app.use(express.static('public/client'));
 app.use(express.static('web3'));

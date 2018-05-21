@@ -418,7 +418,6 @@ input:-webkit-autofill:focus {
 
 .home-area {
     width: 100%;
-    background: url('images/header-bg.jpg') no-repeat scroll center bottom / cover;
     padding-top: 26vh;
     color: #ffffff;
     margin-bottom: 100px;
@@ -451,7 +450,6 @@ input:-webkit-autofill:focus {
 
 .feature-area {
     color: #5A5A5A;
-    background-image: url('images/feature-bg.png');
     background-position: bottom -120px center;
     background-repeat: no-repeat;
     background-size: auto 94%;

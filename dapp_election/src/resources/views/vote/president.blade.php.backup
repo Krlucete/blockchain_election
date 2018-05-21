@@ -13,19 +13,39 @@
     <!-- Place favicon.ico in the root directory -->
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     <link rel="shortcut icon" type="image/ico" href="images/favicon.ico" />
-    <!-- Plugin-CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+<!-- Plugin-CSS -->
+<link rel="stylesheet" href="/css/bootstrap.min.css">
     <!-- Main-Stylesheets -->
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/style_register.css">
     <link rel="stylesheet" href="/css/responsive.css">
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    
+    <link rel="stylesheet" href="/post_inc/datetimepicker/bootstrap-datepicker.css">
+<script src="/post_inc/datetimepicker/bootstrap-datepicker.js"></script>
+
+<!--========= web3 ====================================================================-->
+<script src="../../../../web3/president_election.js"></script>
+<script src="../../../../web3/truffle-contract.js"></script>
+
+<link rel="stylesheet" href="/post_inc/datetimepicker/bootstrap-datepicker_3d.css">
+<script src="/post_inc/datetimepicker/moment-with-locales.js"></script>
+<script src="/post_inc/datetimepicker/bootstrap-datepicker_3d.js"></script>
+    <!-- date picker-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
 </head>
 
 <body data-spy="scroll" data-target=".mainmenu-area">
-    <!--========= web3 ====================================================================-->
-    <script src="web3/president_election.js"></script>
-    <script src="web3/truffle-contract.js"></script>
-    
+  
     <!-- MainMenu-Area -->
     <nav class="mainmenu-area" data-spy="affix" data-offset-top="200">
         <div class="container-fluid">
@@ -65,6 +85,14 @@
                                             var info = new Array();
                                             // info.push 하구 넣쟈아
 
+                                            $( "#yes" ).click(function() {
+                                                App.test("asdf");
+                                                //CHECK here for the checkbox;
+                                                if(checked) alert();
+                                                $( "#form" ).submit();
+                                                });
+
+
                                             // Number of inputs to create
                                             var number = document.getElementById("candidates").value;
                                             // Container <div> where dynamic content will be placed
@@ -99,7 +127,7 @@
                             <div style="" class="space-30"></div>
                             
                             <div class="space-50"></div>
-                            <button id="yes" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="myFunction()">투표제작완료</button>
+                            <button id="yes" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s">투표지확인</button>
 
                             </form>
                             </div>
@@ -124,31 +152,58 @@
         </div>
         <!-- Footer-Bootom-End -->
     </footer>
+
     <!-- Footer-Area-End -->
-            
+    <!--Vendor-JS-->
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="js/vendor/jquery-ui.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <!--Plugin-JS-->
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/contact-form.js"></script>
+    <script src="js/ajaxchimp.js"></script>
+    <script src="js/scrollUp.min.js"></script>
+    <script src="js/magnific-popup.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <!--Main-active-JS-->
+    <script src="js/main.js"></script>
+         
     <script>
-        function myFunction() {
-            var str = document.getElementsByName('from')[0].value;
-            var f_year = Number(str.slice(0, 4));
-            var f_month = Number(str.slice(5, 7));
-            var f_day = Number(str.slice(8, 10));
-            var f_hour = Number(str.slice(11, 13));
-            var f_minute = Number(str.slice(14, 16));
+        //datepicker
+        $(function() {
+                $("#from").datepicker({
+                defaultDate: "+w",
+                changeMonth: true,
+                dateFormat: 'yy-mm-dd hh:ii',
+                dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+                monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+
+                onClose: function(selectedDate) {
+                    $temp = explode('/', selectdDate);
+                    $("#to").datepicker("option", "minDate", selectedDate);
+                }
+            });
+
+            $("#to").datepicker({
+                defaultDate: "+w",
+                changeMonth: true,
+                dateFormat: 'yy-mm-dd hh:ii',
+                dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+                monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                language : 'ko', pickTime : false, defalutDate : new Date(),
+
+                onClose: function(selectedDate) {
+                    $("#from").datepicker("option", "maxDate", selectedDate);
+                }
+            });
+
             
-            var str2 = document.getElementsByName('to')[0].value;
-            var t_year = Number(str2.slice(0, 4));
-            var t_month = Number(str2.slice(5, 7));
-            var t_day = Number(str2.slice(8, 10));
-            var t_hour = Number(str2.slice(11, 13));
-            var t_minute = Number(str2.slice(14, 16));
-
-            App.setTimeStamp(f_year, f_month, f_day, f_hour, f_minute);
-            App.setEndTimeStamp(t_year, t_month, t_day, t_hour, t_minute);
-
-            console.log("setTimeStamp");
-
-            // alert("시작시간: " + str + "\n종료시간: " + str2 + "\n후보자수: ", + number);
-        }
-    </script>                  
+            var date = $('#from').datepicker(selectedDate);
+            console.log(date);
+        });
+    </script>
+                  
 </body>
+
+
 </html>
