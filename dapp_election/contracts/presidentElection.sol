@@ -1,7 +1,8 @@
 pragma solidity ^0.4.7;
 
 import "./dateTime.sol";
-//startvoe -> addcandidate -> time setting
+//startvoe -> addcandidate -> time setting(start, end) -> castvote -> countVotes 
+-> getWinner(or getTieWinner(동점인 경우))
 contract presidentElection is dateTime
 {
     mapping(uint => uint) voteCount; 
@@ -135,6 +136,15 @@ contract presidentElection is dateTime
         if (isTie()) return "tie";
         return candidate[winnerIndex];
     }
+    
+    function getVoteCount() constant public {
+        for(uint i = 1; i <= numCandidates; i++ ){
+            getVoteCountIndi(i);
+        }
+    }
+    function getVoteCountIndi(uint _vote) constant public returns (string){
+        return voteCount[_vote];
+    }
 
     function getTieWinner() voteFinished constant public returns(string, string)
     {
@@ -160,7 +170,10 @@ contract presidentElection is dateTime
         }
         return 0;
     }
-
+    
+    function resetTest() public {
+        
+    }
     function test() public returns(uint){
         return totalVoteCount;
     }
