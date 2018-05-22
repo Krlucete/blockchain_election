@@ -19,7 +19,7 @@ App = {
   },
 
   initPresidentContract: function() {
-    $.getJSON("./../contracts/presidentElection.json", function(election) {
+    $.getJSON("presidentElection", function(election) {
       App.contracts.presidentElection = TruffleContract(election);
       App.contracts.presidentElection.setProvider(App.web3Provider);
       return App.render();
