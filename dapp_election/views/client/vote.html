@@ -63,13 +63,14 @@
                 method: "POST",
                 data: {
                   'label': $scope.candidate.label
-                }
+                } 
               })
               .then(function(response) {
 
                   App.castVote($scope.candidate.label);
-                  
+
                   console.log("posted successfully");
+                  console.log(response.data.location + "지역에서 투표했습니다.");
                   
                 },
                 function(response) {

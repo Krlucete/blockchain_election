@@ -26,22 +26,118 @@ App = {
     });
   },
 
-  castVote: function(number){
-    document.getElementById("vote").disabled = true;
-    document.getElementById("vote2").disabled = true;
+  //using contract
+  startVote: function(_maxVoteCount){
     App.contracts.presidentElection.deployed().then(function(instance){
       electionInstance = instance;
-      return electionInstance.castVote(number, {from: App.coinbase});
+      return electionInstance.startVote(_maxVoteCount, {from: App.coinbase});
     }).then(function(result){
-      location.href = '/vote_success';
+      console.log("startVote");
+      
+    }).catch(function(e){
+      console.log("e_startVote");
+    });
+  },
+
+  addCandidate: function(_name){
+    App.contracts.presidentElection.deployed().then(function(instance){
+      electionInstance = instance;
+      return electionInstance.addCandidate(_name, {from: App.coinbase});
+    }).then(function(result){
+      console.log("addCandidate");
+    }).catch(function(e){
+      console.log("e_addCandidate");
+    });
+  },
+  
+  setTimeStamp: function(_year, _month, _day, _hour, _minute){
+    App.contracts.presidentElection.deployed().then(function(instance){
+      electionInstance = instance;
+      return electionInstance.setTimeStamp(_year, _month, _day, _hour, _minute, {from: App.coinbase});
+    }).then(function(result){
+      console.log("setTimeStamp");
+    }).catch(function(e){
+      console.log("e_setTimeStamp");
+    });
+  },
+  setEndTimeStamp: function(_year, _month, _day, _hour, _minute){
+    App.contracts.presidentElection.deployed().then(function(instance){
+      electionInstance = instance;
+      return electionInstance.setEndTimeStamp(_year, _month, _day, _hour, _minute, {from: App.coinbase});
+    }).then(function(result){
+      console.log("setEndTimeStamp");
+    }).catch(function(e){
+      console.log("e_setEndTimeStamp");
+    });
+  },
+
+ countVotes: function(){
+    App.contracts.presidentElection.deployed().then(function(instance){
+      electionInstance = instance;
+      return electionInstance.countVotes({from: App.coinbase});
+    }).then(function(result){
+        console.log("countVotes");
+    }).catch(function(e){
+      console.log("e_countVotes");
+    });
+  },
+
+  getWinner: function(){
+    App.contracts.presidentElection.deployed().then(function(instance){
+      electionInstance = instance;
+      return electionInstance.getWinner({from: App.coinbase});
+    }).then(function(result){
+      console.log("getWinner");
+    }).catch(function(e){
+      console.log("e_getWinner");
+    });
+  },
+
+  castVote: function(voter){
+    App.contracts.presidentElection.deployed().then(function(instance){
+      electionInstance = instance;
+      return electionInstance.castVote(voter, {from: App.coinbase});
+    }).then(function(result){
       console.log("castVote");
       console.log(result);
+      App.test();
     }).catch(function(e){
       console.log("e_castVote");
     });
   },
 
+  getTieWinner: function(){
+    App.contracts.presidentElection.deployed().then(function(instance){
+      electionInstance = instance;
+      return electionInstance.getTieWinner({from: App.coinbase});
+    }).then(function(result){
+      console.log("getTieWinner");
+    }).catch(function(e){
+      console.log("e_getTieWinner");
+    });
+  },
+
+  test: function(){
+    App.contracts.presidentElection.deployed().then(function(instance){
+      testInstance = instance;
+      return testInstance.test.call({from: App.coinbase});
+    }).then(function(value){
+      console.log("test");
+      console.log(value.c[0]);
+    }).catch(function(e){
+      console.log("e_test");
+    });
+  },
+
+  //using web3
+
   render: function() {
+    App.startVote(5);
+    App.addCandidate("A");
+    App.addCandidate("B");
+    App.setTimeStamp(2018,5,22,17,31);
+    App.setEndTimeStamp(2018,5,22,22,55);
+    App.test();
   }
 }
 
