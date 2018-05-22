@@ -23,8 +23,8 @@
 
 <body data-spy="scroll" data-target=".mainmenu-area">
     <!--========= web3 ====================================================================-->
-    <script src="web3/president_election.js"></script>
-    <script src="web3/truffle-contract.js"></script>
+      <script src="js/president_election.js"></script>
+    <script src="js/truffle-contract.js"></script>
     
     <!-- MainMenu-Area -->
     <nav class="mainmenu-area" data-spy="affix" data-offset-top="200">
