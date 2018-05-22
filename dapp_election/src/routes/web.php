@@ -19,3 +19,7 @@ Route::resource('/president','VoteController');
 Route::get('/shareholder','VoteController@shareholder');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/presidentElection', function() {
+    return File::get('../../build/contracts/presidentElection.json');
+});

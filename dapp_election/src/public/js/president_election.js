@@ -19,7 +19,7 @@ App = {
   },
 
   initPresidentContract: function() {
-    $.getJSON("./../contracts/presidentElection.json", function(election) {
+    $.getJSON("presidentElection", function(election) {
       App.contracts.presidentElection = TruffleContract(election);
       App.contracts.presidentElection.setProvider(App.web3Provider);
       return App.render();
@@ -135,8 +135,8 @@ App = {
     App.startVote(5);
     App.addCandidate("A");
     App.addCandidate("B");
-    // App.setTimeStamp(2018,5,19,17,31);
-    // App.setEndTimeStamp(2018,5,19,17,55);
+    // App.setTimeStamp(2018,5,22,14,30);
+    // App.setEndTimeStamp(2018,5,22,15,00);
     App.test();
   }
 }
