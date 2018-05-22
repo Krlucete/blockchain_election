@@ -137,7 +137,7 @@ contract presidentElection is dateTime
         return candidate[winnerIndex];
     }
     
-    function getVoteCount() constant public {
+    function getVoteCount() voteFinished constant public {
         for(uint i = 1; i <= numCandidates; i++ ){
             getVoteCountIndi(i);
         }
