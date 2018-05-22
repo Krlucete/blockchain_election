@@ -70,7 +70,7 @@
                   App.castVote($scope.candidate.label);
                   
                   console.log("posted successfully");
-                  location.href = '/vote_success';
+                  
                 },
                 function(response) {
                   console.error("error in posting");
@@ -139,7 +139,7 @@
             </div>
             <div flex="20">
               <div layout="column">
-                <md-button class="md-raised" type="submit">{{text.btn_vote_msg}}</md-button>
+                <md-button class="md-raised" id="vote" type="submit">{{text.btn_vote_msg}}</md-button>
               </div>
               <div layout="row">
                 <md-button flex class="md-raised" href="/auth/logout" type="button">{{text.btn_cancle_msg}}</md-button>
@@ -186,7 +186,7 @@
             </md-radio-group>
           </div>
           <div layout="column">
-            <md-button class="md-raised" type="submit">{{text.btn_vote_msg}}</md-button>
+            <md-button class="md-raised" id="vote2" type="submit">{{text.btn_vote_msg}}</md-button>
           </div>
           <div layout="row">
             <md-button flex class="md-raised" href="/auth/logout" type="button">{{text.btn_cancle_msg}}</md-button>

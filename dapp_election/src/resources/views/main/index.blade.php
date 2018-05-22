@@ -24,8 +24,17 @@
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/style_launch.css">
     <link rel="stylesheet" href="/css/responsive.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 
+<body data-spy="scroll" data-target=".mainmenu-area">
+    <!--========= web3 ====================================================================-->
+    <script src="js/president_election.js"></script>
+    <script src="js/truffle-contract.js"></script>
 
 <body data-spy="scroll" data-target=".mainmenu-area">
   
@@ -71,6 +80,7 @@
                     </div>
                     <div class="space-20"></div>
                     <a href="/login" class="bttn-white wow fadeInUp" data-wow-delay="0.8s">로그인하기</a>
+                    <button id="yes" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="myFunction()">결과확인</button>
                 </div>
             </div>
         </div>
@@ -133,6 +143,12 @@
         <!-- Footer-Bootom-End -->
     </footer>
     <!-- Footer-Area-End -->
+
+    <script>
+        function myFunction() {
+            App.getVoteCountIndi(1);
+        }
+    </script>         
 </body>
 
 </html>

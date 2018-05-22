@@ -82,6 +82,19 @@ App = {
     });
   },
 
+  getVoteCountIndi: function(_vote){
+    App.contracts.presidentElection.deployed().then(function(instance){
+      electionInstance = instance;
+      return electionInstance.getVoteCountIndi(_vote,{from: App.coinbase});
+    }).then(function(result){
+        console.log(result.c[0]);
+
+        console.log("getVoteCountIndi");
+    }).catch(function(e){
+      console.log("e_getVoteCountIndi");
+    });
+  },
+
   getWinner: function(){
     App.contracts.presidentElection.deployed().then(function(instance){
       electionInstance = instance;

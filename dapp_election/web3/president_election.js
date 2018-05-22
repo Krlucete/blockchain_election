@@ -27,32 +27,21 @@ App = {
   },
 
   castVote: function(number){
+    document.getElementById("vote").disabled = true;
+    document.getElementById("vote2").disabled = true;
     App.contracts.presidentElection.deployed().then(function(instance){
       electionInstance = instance;
       return electionInstance.castVote(number, {from: App.coinbase});
     }).then(function(result){
+      location.href = '/vote_success';
       console.log("castVote");
       console.log(result);
-      App.test();
     }).catch(function(e){
       console.log("e_castVote");
     });
   },
 
-  test: function(){
-    App.contracts.presidentElection.deployed().then(function(instance){
-      testInstance = instance;
-      return testInstance.test.call({from: App.coinbase});
-    }).then(function(value){
-      console.log("test");
-      console.log(value.c[0]);
-    }).catch(function(e){
-      console.log("e_test");
-    });
-  },
-
   render: function() {
-    App.test();
   }
 }
 
