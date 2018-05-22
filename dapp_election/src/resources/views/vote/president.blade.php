@@ -19,15 +19,11 @@
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/style_register.css">
     <link rel="stylesheet" href="/css/responsive.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 
 <body data-spy="scroll" data-target=".mainmenu-area">
     <!--========= web3 ====================================================================-->
-    <script src="js/president_election.js"></script>
+      <script src="js/president_election.js"></script>
     <script src="js/truffle-contract.js"></script>
     
     <!-- MainMenu-Area -->
@@ -148,6 +144,8 @@
 
             App.setTimeStamp(f_year, f_month, f_day, f_hour, f_minute);
             App.setEndTimeStamp(t_year, t_month, t_day, t_hour, t_minute);
+
+            console.log("setTimeStamp");
 
             // alert("시작시간: " + str + "\n종료시간: " + str2 + "\n후보자수: ", + number);
         }
