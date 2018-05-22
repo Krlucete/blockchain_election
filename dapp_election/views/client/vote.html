@@ -67,10 +67,10 @@
               })
               .then(function(response) {
 
-                  App.castVote();
+                  App.castVote($scope.candidate.label);
                   
                   console.log("posted successfully");
-                  // location.href = '/vote_success';
+                  location.href = '/vote_success';
                 },
                 function(response) {
                   console.error("error in posting");
