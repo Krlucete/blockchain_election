@@ -52,6 +52,11 @@ App = {
   },
 
   render: function() {
+    // App.startVote(5);
+    // App.addCandidate("A");
+    // App.addCandidate("B");
+    // App.setTimeStamp(2018,5,19,17,31);
+    // App.setEndTimeStamp(2018,5,19,17,55);
     App.test();
   }
 }
