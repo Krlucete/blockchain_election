@@ -48,9 +48,13 @@ module.exports = function(app) {
                 } else {
                   var id = rows[0].id;
                   var name = rows[0].name;
+                  var location = rows[0].location;
+
 
                   req.session.username = name;
                   req.session.userid = id;
+                  req.session.location = location;
+                  
                   req.session.save(function() {
                     res.redirect('http://localhost:7777/select_page');
                   });

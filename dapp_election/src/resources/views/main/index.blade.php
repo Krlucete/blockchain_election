@@ -1,6 +1,5 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
-
 <head>
     <meta charset="utf-8">
     <meta name="author" content="Sumon Rahman">
@@ -32,12 +31,11 @@
 </head>
 
 <body data-spy="scroll" data-target=".mainmenu-area">
-    <!--========= web3 ====================================================================-->
+    <!--========= web3 =========-->
     <script src="js/president_election.js"></script>
     <script src="js/truffle-contract.js"></script>
 
 <body data-spy="scroll" data-target=".mainmenu-area">
-  
     <!-- MainMenu-Area -->
     <nav class="mainmenu-area" data-spy="affix" data-offset-top="200">
         <div class="container-fluid">
@@ -80,7 +78,6 @@
                     </div>
                     <div class="space-20"></div>
                     <a href="/login" class="bttn-white wow fadeInUp" data-wow-delay="0.8s">로그인하기</a>
-                    <button id="yes" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="myFunction()">결과확인</button>
                 </div>
             </div>
         </div>
@@ -101,6 +98,8 @@
                         </div>
                         <div class="space-50"></div>
                         <a href="/president" class="bttn-default wow fadeInUp" data-wow-delay="0.8s">투표 제작하기</a>
+                        <div class="space-10"></div>
+                        <button id="yes" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="myFunction()">결과확인</button>
                     </div>
                 </div>
             </div>
@@ -145,10 +144,37 @@
     <!-- Footer-Area-End -->
 
     <script>
-        function myFunction() {
-            App.getVoteCountIndi(1);
+    // var modal = document.getElementById('myModal');
+    // // Get the <span> element that closes the modal
+    // var span = document.getElementsByClassName("close")[0];
+
+    getCookie();
+    function myFunction() {
+        // modal.style.disply = "block";
+        var number = getCookie('candidates');
+        for(var i=0; i<getCookie('candidates'); i++){
+            App.getVoteCountIndi(i+1);
         }
+    }
+    function getCookie(cname){
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length;i++){
+            var c = ca[i];
+            while(c.charAt(0)==' ') c = c.substring(1);
+                if(c.indexOf(name) == 0) return c.substring(name.length,c.length);
+            }
+        return "";
+    }
+    // span.onclick = function() {
+    //     modal.style.display = "none";
+    // }
+    // window.onclick = function(event) {
+    //     if (event.target == modal) {
+    //         modal.style.display = "none";
+    //     }
+    // }
+        
     </script>         
 </body>
-
 </html>

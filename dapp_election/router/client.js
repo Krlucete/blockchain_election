@@ -31,9 +31,8 @@ module.exports = function(app) {
   });
   app.post('/try_voting', function(req, res) {
     if(req.session.userid != undefined && req.session.username != undefined){
-      console.log(req.session.userid + "인 " + req.session.username + "가 "+req.body.label + "에게 투표했습니다.");
-      res.render("vote.html");
-      // res.redirect('http://localhost:3000');
+      console.log(req.session.userid + "인 " + req.session.username + "가 "+ req.body.label + "에게 투표했습니다.");
+      res.json({ location: req.session.location});
 
     }else{
       console.log("투표권이 만료되었습니다. 다시 확인해 주십시오.");

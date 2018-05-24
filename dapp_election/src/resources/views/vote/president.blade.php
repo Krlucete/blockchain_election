@@ -27,7 +27,7 @@
 </head>
 
 <body data-spy="scroll" data-target=".mainmenu-area">
-    <!--========= web3 ====================================================================-->
+    <!--========= web3 =========-->
     <script src="js/president_election.js"></script>
     <script src="js/truffle-contract.js"></script>
     
@@ -72,8 +72,9 @@
                             <div style="" class="space-30"></div>
                             
                             <div class="space-50"></div>
-                            <button id="yes" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="myFunction()">투표제작완료</button>
-
+                            <button id="yes" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="myFunction()">투표제작완료
+                            </button>
+                                
                             </form>
                             
                             </div>
@@ -104,13 +105,12 @@
         var input;
         var name = new Array();
         addFields();
-        // myCandidates();
+        setCookie();
         myFunction();
 
         function addFields(){
             var name = new Array();
             var info = new Array();
-            // info.push 하구 넣쟈아
 
             // Number of inputs to create
             number = document.getElementById("candidates").value;
@@ -138,13 +138,6 @@
                 container.appendChild(document.createElement("br"));
             }
         }
-        // function myCandidates() {
-        //     for(i=0; i<number; i++){
-        //         App.addCandidates("candidates" + (i+1));
-        //     }
-        //     // console.log("myCandidates ---- 후보자 수: " + number);
-        //     // console.log("이름? " + input.name);
-        // }
         function myFunction() {
             var str = document.getElementsByName('from')[0].value;
             var f_year = Number(str.slice(0, 4));
@@ -159,6 +152,8 @@
             var t_day = Number(str2.slice(8, 10));
             var t_hour = Number(str2.slice(11, 13));
             var t_minute = Number(str2.slice(14, 16));
+            
+            setCookie('candidates',number,7);  
 
             for(i=0; i<number; i++){
                 App.addCandidate("candidates" + (i+1));
@@ -166,6 +161,12 @@
             
             App.setTimeStamp(f_year, f_month, f_day, f_hour, f_minute);
             App.setEndTimeStamp(t_year, t_month, t_day, t_hour, t_minute);
+        }
+        function setCookie(cname, cvalue, exdays){
+            var d = new Date();
+            d.setDate(d.getDate() + 1); //1일 뒤 이 시간
+            var expires = "expires="+d.toGMTString();
+            document.cookie = cname + "=" + cvalue + "; " + expires;
         }
     </script>                  
 </body>

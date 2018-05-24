@@ -72,6 +72,7 @@ class VoteController extends Controller
         }
         Candidate_president::insert($total_array); // multi array 사용할 때는 위에 처럼하세욥.
         
+
         return view('main.index');
     }
 
