@@ -67,7 +67,7 @@
               })
               .then(function(response) {
 
-                  App.castVote($scope.candidate.label);
+                  App.castVote($scope.candidate.label, response.data.location);
 
                   console.log("posted successfully");
                   console.log(response.data.location + "지역에서 투표했습니다.");

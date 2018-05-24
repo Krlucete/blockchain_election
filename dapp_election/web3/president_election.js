@@ -52,6 +52,20 @@ App = {
     });
   },
 
+  resetVoteCount1: function(){
+    App.contracts.presidentElection.deployed().then(function(instance){
+      electionInstance = instance;
+      return electionInstance.resetVoteCount1({from: App.coinbase});
+    }).then(function(result){
+      console.log("resetVoteCount1");
+      
+    }).catch(function(e){
+      console.log(e);
+      console.log("e_resetVoteCount1");
+    });
+  },
+
+
   resetVoteCount2: function(){
     App.contracts.presidentElection.deployed().then(function(instance){
       electionInstance = instance;
@@ -185,17 +199,18 @@ App = {
     });
   },
 
-  castVote: function(voter){
+  castVote: function(voter,location){
     document.getElementById("vote").disabled = true;
     document.getElementById("vote2").disabled = true;
     App.contracts.presidentElection.deployed().then(function(instance){
       electionInstance = instance;
-      return electionInstance.castVote(voter, {from: App.coinbase});
+      return electionInstance.castVote(voter, location, {from: App.coinbase});
     }).then(function(result){
       location.href = '/vote_success';
       console.log("castVote");
       console.log(result);
     }).catch(function(e){
+      console.log(e);
       console.log("e_castVote");
     });
   },
@@ -239,8 +254,8 @@ App = {
     App.resetVoteCount6();
     App.resetVoteCount7();
 
-    // App.setTimeStamp(2018,5,22,17,31);
-    // App.setEndTimeStamp(2018,5,22,22,55);
+    App.setTimeStamp(2018,5,24,17,31);
+    App.setEndTimeStamp(2018,5,24,22,55);
     // App.test();
   }
 }
