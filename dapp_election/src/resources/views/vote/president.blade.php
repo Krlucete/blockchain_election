@@ -60,53 +60,22 @@
                                     종료일시: <input class="control" type="text" id="to" name="to" placeholder="2018-05-16 18:00" style="width:250px;"/>
                                     <div style="" class="space-10"></div>
                                     <hr>
-                                </div>   
+                                </div>                
+                                <div style="" class="space-10"></div>
                                 
-                                    
-                                    <div style="" class="space-10"></div>
-                                    <script type='text/javascript'>
-                                        function addFields(){
-                                            var name = new Array();
-                                            var info = new Array();
-                                            // info.push 하구 넣쟈아
-
-                                            // Number of inputs to create
-                                            var number = document.getElementById("candidates").value;
-                                            // Container <div> where dynamic content will be placed
-                                            var container = document.getElementById("num_of_input");
-                                            // Clear previous contents of the container
-                                            while (container.hasChildNodes()) {
-                                                container.removeChild(container.lastChild);
-                                            }
-                                            for (i=0;i<number;i++){
-                                                // Append a node with a random text
-                                                container.appendChild(document.createTextNode("candidates " + (i+1)));
-                                                // Create an <input> element, set its type and name attributes
-                                                var input = document.createElement("input");
-                                                input.type = "text";
-                                                input.name = "candidates_name" + i;
-                                                input.placeholder = "후보자 이름";
-                                                container.appendChild(input);
-                                                var info = document.createElement("input");
-                                                info.type = "text";
-                                                info.name = "info" + i;
-                                                info.placeholder = "후보자 정당";
-                                                container.appendChild(info);
-                                                // Append a line break 
-                                                container.appendChild(document.createElement("br"));
-                                            }
-                                        }
-                                    </script>
-                                    후보자 수 : <input type="text" id="candidates" name="candidates" value=""> (최대 10) <div style="" class="space-10"></div>
-                                    <a href="#" id="filldetails" onclick="addFields()" class="bttn-default wow fadeInUp" data-wow-delay="0.8s">후보자 이름, 정보 입력하기</a>
-                                    <div id="num_of_input"/>
+                                후보자 수 : <input type="text" id="candidates" name="candidates" value=""> (최대 10) <div style="" class="space-10"></div>
+                                <a href="#" id="filldetails" onclick="addFields()" class="bttn-default wow fadeInUp" data-wow-delay="0.8s">후보자 이름, 정보 입력하기</a>
+                                <div id="num_of_input"/>
                                 </div>
+                                <!-- <button id="candidates" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="myCandidates()">후보자확인</button> -->
+    
                             <div style="" class="space-30"></div>
                             
                             <div class="space-50"></div>
                             <button id="yes" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="myFunction()">투표제작완료</button>
 
                             </form>
+                            
                             </div>
                         </div>
                     </div>
@@ -130,8 +99,52 @@
         <!-- Footer-Bootom-End -->
     </footer>
     <!-- Footer-Area-End -->
-            
-    <script>
+    <script type='text/javascript'>
+        var number;
+        var input;
+        var name = new Array();
+        addFields();
+        // myCandidates();
+        myFunction();
+
+        function addFields(){
+            var name = new Array();
+            var info = new Array();
+            // info.push 하구 넣쟈아
+
+            // Number of inputs to create
+            number = document.getElementById("candidates").value;
+            // Container <div> where dynamic content will be placed
+            var container = document.getElementById("num_of_input");
+            // Clear previous contents of the container
+            while (container.hasChildNodes()) {
+                container.removeChild(container.lastChild);
+            }
+            for (i=0;i<number;i++){
+                // Append a node with a random text
+                container.appendChild(document.createTextNode("candidates " + (i+1)));
+                // Create an <input> element, set its type and name attributes
+               input = document.createElement("input");
+                input.type = "text";
+                input.name = "candidates_name" + i;
+                input.placeholder = "후보자 이름";
+                container.appendChild(input);
+                var info = document.createElement("input");
+                info.type = "text";
+                info.name = "info" + i;
+                info.placeholder = "후보자 정당";
+                container.appendChild(info);
+                // Append a line break 
+                container.appendChild(document.createElement("br"));
+            }
+        }
+        // function myCandidates() {
+        //     for(i=0; i<number; i++){
+        //         App.addCandidates("candidates" + (i+1));
+        //     }
+        //     // console.log("myCandidates ---- 후보자 수: " + number);
+        //     // console.log("이름? " + input.name);
+        // }
         function myFunction() {
             var str = document.getElementsByName('from')[0].value;
             var f_year = Number(str.slice(0, 4));
@@ -147,10 +160,12 @@
             var t_hour = Number(str2.slice(11, 13));
             var t_minute = Number(str2.slice(14, 16));
 
+            for(i=0; i<number; i++){
+                App.addCandidate("candidates" + (i+1));
+            }
+            
             App.setTimeStamp(f_year, f_month, f_day, f_hour, f_minute);
             App.setEndTimeStamp(t_year, t_month, t_day, t_hour, t_minute);
-
-            // alert("시작시간: " + str + "\n종료시간: " + str2 + "\n후보자수: ", + number);
         }
     </script>                  
 </body>
