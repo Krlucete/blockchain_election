@@ -100,10 +100,12 @@
                         <div class="space-50"></div>
                         <a href="/president" class="bttn-default wow fadeInUp" data-wow-delay="0.8s">투표 제작하기</a>
                         <div class="space-10"></div>
-                        <button id="yes" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="myFunction()">
-                            결과확인</button>
+                        <button id="yes" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s">
+                        결과확인(chart)</button>
                         <button id="yes2" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="myFunction2()">
-                        결과확인</button>
+                        결과확인(console)</button>
+                        <button class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="myFunction1()">
+                        집계하기</button>
                             <!-- The Modal -->
                         <div id="myModal" class="modal">
                             <!-- Modal content -->
@@ -264,15 +266,24 @@
 
     ////////////////////////////////////
     getCookie();
-    addData();
-    function myFunction2() {
+
+    function myFunction1() {  // 집계하기
         var number = getCookie('candidates');
+        App.voteCount = [];
         for(var i=0; i<getCookie('candidates'); i++){
-            App.getVoteCountIndi(i+1);
-            addData(myChart, (i+1) + "번후보", );
-            // console.log("asdf" + (i+1) + ": " + App.voteCount[i]);
+            App.getVoteCount(i+1);
         }
     }
+
+    function myFunction2(){ // 결과확인(console)
+        for(var i=0; i<getCookie('candidates'); i++){
+          console.log("후보" + (i+1) + ": " + App.voteCount[i]);
+        }
+        for(var i=0; i<getCookie('candidates'); i++){
+            addData(myChart, (i+1) + "번후보", Number(App.voteCount[i]));
+        }
+    }
+
     function getCookie(cname){
         var name = cname + "=";
         var ca = document.cookie.split(';');
@@ -283,7 +294,6 @@
             }
         return "";
     }
-        
     </script>         
 </body>
 </html>

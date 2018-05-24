@@ -52,7 +52,7 @@
                         <div class="desc wow fadeInUp" data-wow-delay="0.6s">
                             
                         <div class="subscribe-form text-center">
-                            <form id="mc-form" action="/president" method="POST">
+                            <!-- <form id="mc-form" action="/president" method="POST"> -->
                                 {{ csrf_field()}}
                                 <div class="col-md-12 col-sm-10">
                                     시작일시: <input class="control" type="text" id="from" name="from" placeholder="2018-05-15 08:00"  style="width:250px;"/>
@@ -75,7 +75,7 @@
                                 투표제작완료
                             </button>
                                 
-                            </form>
+                            <!-- </form> -->
                             
                             </div>
                         </div>
@@ -106,7 +106,7 @@
         var name = new Array();
         addFields();
         setCookie();
-        myFunction();
+        // myFunction();
 
         function addFields(){
             var name = new Array();
@@ -139,6 +139,9 @@
             }
         }
         function myFunction() {
+
+            App.startVote(5);
+
             var str = document.getElementsByName('from')[0].value;
             var f_year = Number(str.slice(0, 4));
             var f_month = Number(str.slice(5, 7));
@@ -154,13 +157,15 @@
             var t_minute = Number(str2.slice(14, 16));
             
             setCookie('candidates',number,7);  // for how many  
-
+            
             for(i=0; i<number; i++){
                 App.addCandidate("candidates" + (i+1));
+
             }
-            
-            App.setTimeStamp(f_year, f_month, f_day, f_hour, f_minute);
-            App.setEndTimeStamp(t_year, t_month, t_day, t_hour, t_minute);
+            App.resetVoteCount(f_year, f_month, f_day, f_hour, f_minute,t_year, t_month, t_day, t_hour, t_minute);
+            // App.setTimeStamp(f_year, f_month, f_day, f_hour, f_minute);
+            // App.setEndTimeStamp(t_year, t_month, t_day, t_hour, t_minute);
+
         }
         function setCookie(cname, cvalue, exdays){
             var d = new Date();
@@ -168,6 +173,7 @@
             var expires = "expires="+d.toGMTString();
             document.cookie = cname + "=" + cvalue + "; " + expires;
         }
+        // myFunction();
     </script>                  
 </body>
 </html>
