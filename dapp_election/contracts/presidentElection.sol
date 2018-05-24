@@ -80,9 +80,16 @@ contract presidentElection is dateTime
         {
             voteCount[i] = 0;
             candidate[i] = "";
-            voteAddressCount[i][1]=0;
         }
         totalVoteCount =0;
+    }
+    function resetVoteCount1() voteFinished ownerShip public
+    {
+        //투표수 리셋
+        for (uint i=1; i<=numCandidates; i++)
+        {
+            voteAddressCount[i][1]=0;
+        }
     }
     function resetVoteCount2() voteFinished ownerShip public
     {
