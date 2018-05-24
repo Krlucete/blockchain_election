@@ -1,12 +1,12 @@
 pragma solidity ^0.4.7;
 
 import "./dateTime.sol";
-//startvoe -> addcandidate -> time setting(start, end) -> castvote -> countVotes 
-//-> getWinner(or getTieWinner(동점인 경우))
+//startvoe -> addcandidate -> resetVoteCount -> time setting(start, end) -> castvote -> countVotes -> getWinner(or getTieWinner(동점인 경우))
 contract presidentElection is dateTime
 {
     mapping(uint => uint) voteCount; 
     mapping(uint => string) candidate; 
+    uint[20][20] voteAddressCount;
     uint public numCandidates;
     uint public votePhaseStartTime;
     uint public votePhaseEndTime;
@@ -38,15 +38,12 @@ contract presidentElection is dateTime
         _;
     }
 
-    event logString(string);
-    event logInt(uint);
-    event voteWinner(string, string);
-
     function presidentElection() public { //소유자와 투표자 지정
         owner = msg.sender;
         voteManager = msg.sender;
         setTime=true;
         setEndTime=true;
+        
     }
     
     function setTimeStamp(uint16 _year, uint8 _month, uint8 _day, uint8 _hour,
@@ -68,7 +65,6 @@ contract presidentElection is dateTime
     {
         //투표 설정
         //투표자 수 설정
-        resetVoteCount();
         maxVoteCount = _maxVoteCount;
         numCandidates = 0;
         winnerIndex = 0;
@@ -77,14 +73,71 @@ contract presidentElection is dateTime
         setEndTime = false;
     }
 
-    function resetVoteCount() private
+    function resetVoteCount() voteFinished ownerShip public
     {
         //투표수 리셋
         for (uint i=1; i<=numCandidates; i++)
         {
             voteCount[i] = 0;
+            candidate[i] = "";
         }
         totalVoteCount =0;
+    }
+    function resetVoteCount1() voteFinished ownerShip public
+    {
+        //투표수 리셋
+        for (uint i=1; i<=numCandidates; i++)
+        {
+            voteAddressCount[i][1]=0;
+        }
+    }
+    function resetVoteCount2() voteFinished ownerShip public
+    {
+        //투표수 리셋
+        for (uint i=1; i<=numCandidates; i++)
+        {
+            voteAddressCount[i][2]=0;
+        }
+    }
+    function resetVoteCount3() voteFinished ownerShip public
+    {
+        //투표수 리셋
+        for (uint i=1; i<=numCandidates; i++)
+        {
+            voteAddressCount[i][2]=0;
+        }
+    }
+    function resetVoteCount4() voteFinished ownerShip public
+    {
+        //투표수 리셋
+        for (uint i=1; i<=numCandidates; i++)
+        {
+            voteAddressCount[i][2]=0;
+        }
+    }
+    function resetVoteCount5() voteFinished ownerShip public
+    {
+        //투표수 리셋
+        for (uint i=1; i<=numCandidates; i++)
+        {
+            voteAddressCount[i][2]=0;
+        }
+    }
+    function resetVoteCount6() voteFinished ownerShip public
+    {
+        //투표수 리셋
+        for (uint i=1; i<=numCandidates; i++)
+        {
+            voteAddressCount[i][2]=0;
+        }
+    }
+    function resetVoteCount7() voteFinished ownerShip public
+    {
+        //투표수 리셋
+        for (uint i=1; i<=numCandidates; i++)
+        {
+            voteAddressCount[i][2]=0;
+        }
     }
 
     function addCandidate(string _name) voteFinished ownerShip  public
@@ -95,7 +148,7 @@ contract presidentElection is dateTime
         candidate[numCandidates] = _name;
     }
 
-    function castVote(uint _vote) voteAlreadyStarted public
+    function castVote(uint _vote, uint _voter) voteAlreadyStarted public
     {
         //투표
         require((now+3600*9) < votePhaseEndTime);
@@ -106,6 +159,7 @@ contract presidentElection is dateTime
         if (_vote <= numCandidates) 
         {
             voteCount[_vote] += 1;
+            voteAddressCount[_vote][_voter] += 1;
             totalVoteCount += 1;
         } 
     }
@@ -137,9 +191,11 @@ contract presidentElection is dateTime
         return candidate[winnerIndex];
     }
     
-    function getVoteCountIndi(uint _vote) constant public returns (uint)
-    {
+    function getVoteCount(uint _vote) voteFinished constant public returns (uint){
         return voteCount[_vote];
+    }
+    function getVoteAddressCount(uint _vote, uint _voter) voteFinished constant public returns (uint){
+        return voteAddressCount[_vote][_voter];
     }
 
     function getTieWinner() voteFinished constant public returns(string, string)
