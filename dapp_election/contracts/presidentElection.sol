@@ -6,8 +6,7 @@ contract presidentElection is dateTime
 {
     mapping(uint => uint) voteCount; 
     mapping(uint => string) candidate; 
-    //mapping(uint => string) voterAddress;
-    uint[17][11] voteAddressCount;
+    uint[20][20] voteAddressCount;
     uint public numCandidates;
     uint public votePhaseStartTime;
     uint public votePhaseEndTime;
@@ -39,10 +38,6 @@ contract presidentElection is dateTime
         _;
     }
 
-    event logString(string);
-    event logInt(uint);
-    event voteWinner(string, string);
-
     function presidentElection() public { //소유자와 투표자 지정
         owner = msg.sender;
         voteManager = msg.sender;
@@ -50,24 +45,6 @@ contract presidentElection is dateTime
         setEndTime=true;
         
     }
-    /*function setAddress() public{
-        voterAddress[1]="서울";
-        voterAddress[2]="부산";
-        voterAddress[3]="대구";
-        voterAddress[4]="인천";
-        voterAddress[5]="광주";
-        voterAddress[6]="대전";
-        voterAddress[7]="울산";
-        voterAddress[8]="경기";
-        voterAddress[9]="강원";
-        voterAddress[10]="충북";
-        voterAddress[11]="충남";
-        voterAddress[12]="전북";
-        voterAddress[13]="전남";
-        voterAddress[14]="경북";
-        voterAddress[15]="경남";
-        voterAddress[16]="제주";
-    }*/
     
     function setTimeStamp(uint16 _year, uint8 _month, uint8 _day, uint8 _hour,
         uint8 _minute) voteAlreadyStarted voteFinished ownerShip public
@@ -100,12 +77,12 @@ contract presidentElection is dateTime
     function resetVoteCount() private
     {
         //투표수 리셋
-        for (uint i=1; i<=numCandidates; i++)
+        for (uint i=1; i<=9; i++)
         {
             voteCount[i] = 0;
             candidate[i] = "";
-            for(uint j=1; j<=17;j++){
-                voteAddressCount[j][i]=0;
+            for(uint j=1; j<=16;j++){
+                voteAddressCount[i][j]=0;
             }
         }
         totalVoteCount =0;
@@ -130,7 +107,7 @@ contract presidentElection is dateTime
         if (_vote <= numCandidates) 
         {
             voteCount[_vote] += 1;
-            voteAddressCount[_voter][_vote] += 1;
+            voteAddressCount[_vote][_voter] += 1;
             totalVoteCount += 1;
         } 
     }
@@ -166,7 +143,7 @@ contract presidentElection is dateTime
         return voteCount[_vote];
     }
     function getVoteAddressCount(uint _vote, uint _voter) voteFinished constant public returns (uint){
-        return voteAddressCount[_voter][_vote];
+        return voteAddressCount[_vote][_voter];
     }
 
     function getTieWinner() voteFinished constant public returns(string, string)
