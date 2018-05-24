@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
 </head>
 
 <body data-spy="scroll" data-target=".mainmenu-area">
@@ -101,6 +102,19 @@
                         <div class="space-10"></div>
                         <button id="yes" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="myFunction()">
                             결과확인</button>
+                        <button id="yes2" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="myFunction2()">
+                        결과확인</button>
+                            <!-- The Modal -->
+                        <div id="myModal" class="modal">
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p> 대통령 선거 결과 </p>
+                                <canvas id="myChart"></canvas>
+                                <br><p> 지역별 결과 </p>
+                                <canvas id="myChart2"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -127,6 +141,9 @@
             </div>
         </div>
     </section>
+
+
+
     <!-- shareholder-Area-End -->
     <!-- Footer-Area -->
     <footer class="footer-area" id="contact_page">
@@ -145,16 +162,115 @@
     <!-- Footer-Area-End -->
 
     <script>
-    var modal = document.getElementById('myModal');
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+        var modal = document.getElementById('myModal');
+    // Get the button that opens the modal
+        var btn = document.getElementById("yes");
 
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+        span.onclick = function() {
+        modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    // ------------ chart --------------------------
+    var ctx = document.getElementById("myChart");
+    var datas = {
+        labels: [],
+        datasets: [{
+        label: '# of Votes',
+        data: [],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+        }]
+    }
+    var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: datas,
+    });
+    function addData(chart, label, data) {
+        chart.data.labels.push(label);
+        chart.data.datasets.forEach((dataset) => {
+            dataset.data.push(data);
+        });
+        chart.update();
+    }
+    function removeData(chart) {
+        chart.data.labels.pop();
+        chart.data.datasets.forEach((dataset) => {
+            dataset.data.pop();
+        });
+        chart.update();
+    }
+
+    // addData(myChart, "1번후보", 5000000);
+    // addData(myChart, "2번후보", 1000000);
+    // addData(myChart, "3번후보", 3500000);
+    var ctx = document.getElementById("myChart2");
+    var datas = {
+        labels: [],
+        datasets: [{
+        label: '# of Votes',
+        data: [],
+        backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+        }]
+    }
+    var myChart2 = new Chart(ctx, {
+        type: 'pie',
+        data: datas,
+    });
+    addData(myChart2, "이박사", 5000000);
+    addData(myChart2, "문검사", 1000000);
+    addData(myChart2, "강시장", 10000);
+
+    ////////////////////////////////////
     getCookie();
-    function myFunction() {
-        // modal.style.disply = "block";
+    addData();
+    function myFunction2() {
         var number = getCookie('candidates');
         for(var i=0; i<getCookie('candidates'); i++){
             App.getVoteCountIndi(i+1);
+            addData(myChart, (i+1) + "번후보", );
+            // console.log("asdf" + (i+1) + ": " + App.voteCount[i]);
         }
     }
     function getCookie(cname){
@@ -163,18 +279,10 @@
         for(var i=0; i<ca.length;i++){
             var c = ca[i];
             while(c.charAt(0)==' ') c = c.substring(1);
-                if(c.indexOf(name) == 0) return c.substring(name.length,c.length);
+                if(c.indexOf(name) == 0) return c.substring(name.length, c.length);
             }
         return "";
     }
-    // span.onclick = function() {
-    //     modal.style.display = "none";
-    // }
-    // window.onclick = function(event) {
-    //     if (event.target == modal) {
-    //         modal.style.display = "none";
-    //     }
-    // }
         
     </script>         
 </body>

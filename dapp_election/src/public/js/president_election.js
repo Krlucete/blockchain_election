@@ -2,6 +2,7 @@ App = {
   web3Provider: null,
   contracts: {},
   coinbase: 'null',
+  voteCount: {},
 
   init: function() {
     return App.initWeb3();
@@ -88,8 +89,9 @@ App = {
       return electionInstance.getVoteCountIndi(_vote,{from: App.coinbase});
     }).then(function(result){
         console.log(result.c[0]);
-
-        console.log("getVoteCountIndi");
+        // console.log("getVoteCountIndi");
+        voteCount.push(result.c[0]);
+        console.log(voteCount);
     }).catch(function(e){
       console.log("e_getVoteCountIndi");
     });
@@ -134,8 +136,8 @@ App = {
     App.contracts.presidentElection.deployed().then(function(instance){
       testInstance = instance;
       return testInstance.test.call({from: App.coinbase});
-    }).then(function(value){
       console.log("test");
+    }).then(function(value){
       console.log(value.c[0]);
     }).catch(function(e){
       console.log("e_test");

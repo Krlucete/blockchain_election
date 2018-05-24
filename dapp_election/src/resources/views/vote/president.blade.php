@@ -67,12 +67,12 @@
                                 <a href="#" id="filldetails" onclick="addFields()" class="bttn-default wow fadeInUp" data-wow-delay="0.8s">후보자 이름, 정보 입력하기</a>
                                 <div id="num_of_input"/>
                                 </div>
-                                <!-- <button id="candidates" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="myCandidates()">후보자확인</button> -->
     
                             <div style="" class="space-30"></div>
                             
                             <div class="space-50"></div>
-                            <button id="yes" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="myFunction()">투표제작완료
+                            <button id="yes" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="myFunction()">
+                                투표제작완료
                             </button>
                                 
                             </form>
@@ -153,7 +153,7 @@
             var t_hour = Number(str2.slice(11, 13));
             var t_minute = Number(str2.slice(14, 16));
             
-            setCookie('candidates',number,7);  
+            setCookie('candidates',number,7);  // for how many  
 
             for(i=0; i<number; i++){
                 App.addCandidate("candidates" + (i+1));
