@@ -1,7 +1,7 @@
 pragma solidity ^0.4.7;
 
 import "./dateTime.sol";
-//startvoe -> addcandidate -> time setting(start, end) -> castvote -> countVotes -> getWinner(or getTieWinner(동점인 경우))
+//startvoe -> resetVoteCount -> addcandidate -> time setting(start, end) -> castvote -> countVotes -> getWinner(or getTieWinner(동점인 경우))
 contract presidentElection is dateTime
 {
     mapping(uint => uint) voteCount; 
@@ -65,7 +65,6 @@ contract presidentElection is dateTime
     {
         //투표 설정
         //투표자 수 설정
-        resetVoteCount();
         maxVoteCount = _maxVoteCount;
         numCandidates = 0;
         winnerIndex = 0;
@@ -74,7 +73,7 @@ contract presidentElection is dateTime
         setEndTime = false;
     }
 
-    function resetVoteCount() private
+    function resetVoteCount() voteFinished ownerShip public
     {
         //투표수 리셋
         for (uint i=1; i<=9; i++)
