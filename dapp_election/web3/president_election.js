@@ -39,6 +39,19 @@ App = {
     });
   },
 
+  resetVoteCount: function(){
+    App.contracts.presidentElection.deployed().then(function(instance){
+      electionInstance = instance;
+      return electionInstance.resetVoteCount({from: App.coinbase});
+    }).then(function(result){
+      console.log("resetVoteCount");
+      
+    }).catch(function(e){
+      console.log(e);
+      console.log("e_resetVoteCount");
+    });
+  },
+
   addCandidate: function(_name){
     App.contracts.presidentElection.deployed().then(function(instance){
       electionInstance = instance;
@@ -134,9 +147,12 @@ App = {
   //using web3
 
   render: function() {
-    // App.startVote(5);
-    // App.addCandidate("A");
-    // App.addCandidate("B");
+    App.startVote(5);
+    App.addCandidate("A");
+    App.addCandidate("B");
+    App.addCandidate("C");
+
+    App.resetVoteCount();
     // App.setTimeStamp(2018,5,22,17,31);
     // App.setEndTimeStamp(2018,5,22,22,55);
     // App.test();
