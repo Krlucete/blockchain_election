@@ -80,11 +80,57 @@ contract presidentElection is dateTime
         {
             voteCount[i] = 0;
             candidate[i] = "";
-            for(uint j=1; j<=7;j++){
-                voteAddressCount[i][j]=0;
-            }
+            voteAddressCount[i][1]=0;
         }
         totalVoteCount =0;
+    }
+    function resetVoteCount2() voteFinished ownerShip public
+    {
+        //투표수 리셋
+        for (uint i=1; i<=numCandidates; i++)
+        {
+            voteAddressCount[i][2]=0;
+        }
+    }
+    function resetVoteCount3() voteFinished ownerShip public
+    {
+        //투표수 리셋
+        for (uint i=1; i<=numCandidates; i++)
+        {
+            voteAddressCount[i][2]=0;
+        }
+    }
+    function resetVoteCount4() voteFinished ownerShip public
+    {
+        //투표수 리셋
+        for (uint i=1; i<=numCandidates; i++)
+        {
+            voteAddressCount[i][2]=0;
+        }
+    }
+    function resetVoteCount5() voteFinished ownerShip public
+    {
+        //투표수 리셋
+        for (uint i=1; i<=numCandidates; i++)
+        {
+            voteAddressCount[i][2]=0;
+        }
+    }
+    function resetVoteCount6() voteFinished ownerShip public
+    {
+        //투표수 리셋
+        for (uint i=1; i<=numCandidates; i++)
+        {
+            voteAddressCount[i][2]=0;
+        }
+    }
+    function resetVoteCount7() voteFinished ownerShip public
+    {
+        //투표수 리셋
+        for (uint i=1; i<=numCandidates; i++)
+        {
+            voteAddressCount[i][2]=0;
+        }
     }
 
     function addCandidate(string _name) voteFinished ownerShip  public
