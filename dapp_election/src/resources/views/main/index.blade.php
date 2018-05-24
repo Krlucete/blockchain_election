@@ -99,7 +99,8 @@
                         <div class="space-50"></div>
                         <a href="/president" class="bttn-default wow fadeInUp" data-wow-delay="0.8s">투표 제작하기</a>
                         <div class="space-10"></div>
-                        <button id="yes" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="myFunction()">결과확인</button>
+                        <button id="yes" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="myFunction()">
+                            결과확인</button>
                     </div>
                 </div>
             </div>
@@ -144,9 +145,9 @@
     <!-- Footer-Area-End -->
 
     <script>
-    // var modal = document.getElementById('myModal');
-    // // Get the <span> element that closes the modal
-    // var span = document.getElementsByClassName("close")[0];
+    var modal = document.getElementById('myModal');
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
 
     getCookie();
     function myFunction() {
