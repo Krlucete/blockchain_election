@@ -263,15 +263,15 @@ App = {
     });
   },
 
-  test: function(){
+  getNumCandidates: function(){
     App.contracts.presidentElection.deployed().then(function(instance){
-      testInstance = instance;
-      return testInstance.test.call({from: App.coinbase});
-    }).then(function(value){
-      console.log("test");
-      console.log(value.c[0]);
+      electionInstance = instance;
+      return electionInstance.getNumCandidates({from: App.coinbase});
+    }).then(function(result){
+      console.log("getNumCandidates : " + result.c[0]);
     }).catch(function(e){
-      console.log("e_test");
+      console.log(e);
+      console.log("e_getNumCandidates");
     });
   },
 

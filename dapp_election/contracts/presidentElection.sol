@@ -222,12 +222,9 @@ contract presidentElection is dateTime
         }
         return 0;
     }
-    
-    function resetTest() public {
-        
-    }
-    function test() public returns(uint){
-        return totalVoteCount;
+
+    function getNumCandidates() const public returns(uint){
+        return numCandidates;
     }
 
 }
