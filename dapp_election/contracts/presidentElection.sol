@@ -194,7 +194,7 @@ contract presidentElection is dateTime
     function getVoteCount(uint _vote) constant public returns (uint){
         return voteCount[_vote];
     }
-    function getVoteAddressCount(uint _vote, uint _voter) voteFinished constant public returns (uint){
+    function getVoteAddressCount(uint _vote, uint _voter) constant public returns (uint){
         return voteAddressCount[_vote][_voter];
     }
 

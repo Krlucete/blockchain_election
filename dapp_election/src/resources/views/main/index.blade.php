@@ -100,21 +100,35 @@
                         <div class="space-50"></div>
                         <a href="/president" class="bttn-default wow fadeInUp" data-wow-delay="0.8s">투표 제작하기</a>
                         <div class="space-10"></div>
-                        <button id="yes" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s">
+                        <button id="yes" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="makeGraph()">
                         결과확인(chart)</button>
-                        <button id="yes2" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="myFunction2()">
-                        결과확인(console)</button>
-                        <button class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="myFunction1()">
-                        집계하기</button>
+                       
                             <!-- The Modal -->
                         <div id="myModal" class="modal">
                             <!-- Modal content -->
                             <div class="modal-content">
                                 <span class="close">&times;</span>
                                 <p> 대통령 선거 결과 </p>
+                               
+                        <button class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="setGraphData()">
+                        대선</button>
+                        <button class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="setGraphDataByAddress(1)">
+                        서울</button>
+                        <button class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="setGraphDataByAddress(2)">
+                        경기</button>
+                        <button class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="setGraphDataByAddress(3)">
+                        강원</button>
+                        <button class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="setGraphDataByAddress(4)">
+                        충청</button>
+                        <button class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="setGraphDataByAddress(5)">
+                        전라</button>
+                        <button class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="setGraphDataByAddress(6)">
+                        경상</button>
+                        <button class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="setGraphDataByAddress(7)">
+                        제주</button>
                                 <canvas id="myChart"></canvas>
-                                <br><p> 지역별 결과 </p>
-                                <canvas id="myChart2"></canvas>
+                                <button id="yes2" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="makeGraph()">
+                        차트만들기</button>
                             </div>
                         </div>
                     </div>
@@ -227,62 +241,40 @@
         });
         chart.update();
     }
-
-    // addData(myChart, "1번후보", 5000000);
-    // addData(myChart, "2번후보", 1000000);
-    // addData(myChart, "3번후보", 3500000);
-    var ctx = document.getElementById("myChart2");
-    var datas = {
-        labels: [],
-        datasets: [{
-        label: '# of Votes',
-        data: [],
-        backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-            'rgba(255,99,132,1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-        ],
-        borderWidth: 1
-        }]
+    function clearData(chart){
+        for(var i=0; i<getCookie('candidates'); i++){
+            removeData(chart);
+        }
     }
-    var myChart2 = new Chart(ctx, {
-        type: 'pie',
-        data: datas,
-    });
-    addData(myChart2, "이박사", 5000000);
-    addData(myChart2, "문검사", 1000000);
-    addData(myChart2, "강시장", 10000);
-
+    
     ////////////////////////////////////
     getCookie();
 
-    function myFunction1() {  // 집계하기
-        var number = getCookie('candidates');
+     function makeGraph(){ 
+        clearData(myChart);
+        for(var i=0; i<getCookie('candidates'); i++){
+          console.log("후보" + (i+1) + ": " + App.voteCount[i]); // 결과확인(console)
+        }
+        for(var i=0; i<getCookie('candidates'); i++){
+            addData(myChart, (i+1) + "번후보", Number(App.voteCount[i])); // 결과확인(chart)
+        }
+    }
+
+    function setGraphData() {  // 집계하기
         App.voteCount = [];
         for(var i=0; i<getCookie('candidates'); i++){
             App.getVoteCount(i+1);
         }
     }
 
-    function myFunction2(){ // 결과확인(console)
+    //지역 별 집계하기
+    function setGraphDataByAddress(location){
+        App.voteCount = [];
         for(var i=0; i<getCookie('candidates'); i++){
-          console.log("후보" + (i+1) + ": " + App.voteCount[i]);
-        }
-        for(var i=0; i<getCookie('candidates'); i++){
-            addData(myChart, (i+1) + "번후보", Number(App.voteCount[i]));
+            App.getVoteAddressCount(i+1,location);
         }
     }
+
 
     function getCookie(cname){
         var name = cname + "=";

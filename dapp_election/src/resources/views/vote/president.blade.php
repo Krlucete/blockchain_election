@@ -139,8 +139,7 @@
             }
         }
         function myFunction() {
-
-            App.startVote(5);
+            App.startVote(20000);
 
             var str = document.getElementsByName('from')[0].value;
             var f_year = Number(str.slice(0, 4));
@@ -160,12 +159,8 @@
             
             for(i=0; i<number; i++){
                 App.addCandidate("candidates" + (i+1));
-
             }
             App.resetVoteCount(f_year, f_month, f_day, f_hour, f_minute,t_year, t_month, t_day, t_hour, t_minute);
-            // App.setTimeStamp(f_year, f_month, f_day, f_hour, f_minute);
-            // App.setEndTimeStamp(t_year, t_month, t_day, t_hour, t_minute);
-
         }
         function setCookie(cname, cvalue, exdays){
             var d = new Date();

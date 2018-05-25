@@ -202,7 +202,6 @@ App = {
         return electionInstance.getVoteCount(_vote,{from: App.coinbase});
       }).then(function(result){
         console.log(result.c[0]);
-        // console.log("getVoteCount");
         App.voteCount.push(result.c[0]);
         console.log(App.voteCount);
       }).catch(function(e){
@@ -216,8 +215,12 @@ App = {
       electionInstance = instance;
       return electionInstance.getVoteAddressCount(_vote, location, {from: App.coinbase});
     }).then(function(result){
-        console.log("getVoteAddressCount");
+       console.log(result.c[0]);
+       App.voteCount.push(result.c[0]);
+       console.log(App.voteCount);
     }).catch(function(e){
+      console.log(e);
+      alert("vote 진행중에 결과창을 확인할 수 없습니다.");
       console.log("e_getVoteAddressCount");
     });
   },
@@ -272,26 +275,7 @@ App = {
     });
   },
 
-  //using web3
-
   render: function() {
-    // App.startVote(5);
-    // App.addCandidate("A");
-    // App.addCandidate("B");
-    // App.addCandidate("C");
-
-    // App.resetVoteCount();
-    // App.resetVoteCount1();
-    // App.resetVoteCount2();
-    // App.resetVoteCount3();
-    // App.resetVoteCount4();
-    // App.resetVoteCount5();
-    // App.resetVoteCount6();
-    // App.resetVoteCount7();
-
-    // App.setTimeStamp(2018,5,24,17,31);
-    // App.setEndTimeStamp(2018,5,24,22,55);
-    // App.test();
   }
 }
 
