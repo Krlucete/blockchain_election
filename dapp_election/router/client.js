@@ -3,6 +3,10 @@ module.exports = function(app) {
   const bodyParser = require('body-parser');
   const MySQLStore = require('express-mysql-session')(session);
   const mysql = require('mysql');
+  const CryptoJS = require("crypto-js");
+
+  const truffle_contract = requrie('truffle-contract.js');
+  const hashdb = requrie('hashdb-contract.js');
 
   app.use(bodyParser.urlencoded({
     extended: false
@@ -10,6 +14,8 @@ module.exports = function(app) {
   app.use(bodyParser.json());
 
   app.get('/logo', function(req, res) {
+
+
     res.render('logo.html');
   });
   app.get('/select_page', function(req, res) {
@@ -17,7 +23,8 @@ module.exports = function(app) {
   });
 
   app.get('/presidential_election', function(req, res) {
-    if (req.session.username) {
+    if (req.session.username && hashDB.controlHashDB(req.session.seed)) 
+    {
       res.render('vote.html');
       // res.redirect('http://localhost:3000');
     } else {
@@ -30,6 +37,7 @@ module.exports = function(app) {
     `);
   });
   app.post('/try_voting', function(req, res) {
+
     if(req.session.userid != undefined && req.session.username != undefined){
       console.log(req.session.userid + "인 " + req.session.username + "가 "+ req.body.label + "에게 투표했습니다.");
       res.json({ location: req.session.location});
@@ -62,4 +70,5 @@ module.exports = function(app) {
   app.get('/voter_info', function(req, res) {
     res.render('voter_info.html');
   });
+
 }
