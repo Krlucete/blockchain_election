@@ -223,7 +223,7 @@ contract presidentElection is dateTime
         return 0;
     }
 
-    function getNumCandidates() const public returns(uint){
+    function getNumCandidates() constant public returns(uint){
         return numCandidates;
     }
 

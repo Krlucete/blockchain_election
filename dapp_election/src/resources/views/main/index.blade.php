@@ -108,24 +108,17 @@
                             <!-- Modal content -->
                             <div class="modal-content">
                                 <span class="close">&times;</span>
-                                <p> 대통령 선거 결과 </p>
-                               
-                        <a onclick="setGraphData()">
-                        대선</a>
-                        <button onclick="setGraphDataByAddress(1)">
-                        서울</button>
-                        <button onclick="setGraphDataByAddress(2)">
-                        경기</button>
-                        <button onclick="setGraphDataByAddress(3)">
-                        강원</button>
-                        <button onclick="setGraphDataByAddress(4)">
-                        충청</button>
-                        <button onclick="setGraphDataByAddress(5)">
-                        전라</button>
-                        <button onclick="setGraphDataByAddress(6)">
-                        경상</button>
-                        <button onclick="setGraphDataByAddress(7)">
-                        제주</button>
+                                <h3> 대통령 선거 결과 </h3>
+                                <p>선택 후 '차트만들기' 버튼을 눌러주세요</p>
+                                <br>
+                                <a onclick="setGraphData()">대선</a>&nbsp
+                                <a onclick="setGraphDataByAddress(1)">서울</a>&nbsp
+                                <a onclick="setGraphDataByAddress(2)">경기</a>&nbsp
+                                <a onclick="setGraphDataByAddress(3)">강원</a>&nbsp
+                                <a onclick="setGraphDataByAddress(4)">충청</a>&nbsp
+                                <a onclick="setGraphDataByAddress(5)">전라</a>&nbsp
+                                <a onclick="setGraphDataByAddress(6)">경상</a>&nbsp
+                                <a onclick="setGraphDataByAddress(7)">제주</a>&nbsp
                                 <canvas id="myChart"></canvas>
                                 <button id="yes2" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="makeGraph()">
                         차트만들기</button>
@@ -252,10 +245,11 @@
      function makeGraph(){ 
         clearData(myChart);
         for(var i=0; i<getCookie('candidates'); i++){
-          console.log("후보" + (i+1) + ": " + App.voteCount[i]); // 결과확인(console)
+          console.log(App.candidateName[i] + ": " + App.voteCount[i]); // 결과확인(console)
         }
         for(var i=0; i<getCookie('candidates'); i++){
-            addData(myChart, (i+1) + "번후보", Number(App.voteCount[i])); // 결과확인(chart)
+            // addData(myChart, (i+1) + "번후보", Number(App.voteCount[i])); // 결과확인(chart)
+            addData(myChart, getCookie('candidates'+i), Number(App.voteCount[i]));
         }
     }
 

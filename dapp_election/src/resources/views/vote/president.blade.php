@@ -52,10 +52,11 @@
                         <div class="desc wow fadeInUp" data-wow-delay="0.6s">
                             
                         <div class="subscribe-form text-center">
-                            <form id="mc-form" action="/president" method="POST">
+                            <!-- <form id="mc-form" action="/president" method="POST"> -->
                                 {{ csrf_field()}}
                                 <div class="col-md-12 col-sm-10">
-                                    시작일시: <input class="control" type="text" id="from" name="from" placeholder="2018-05-15 08:00"  style="width:250px;"/>
+                                <!-- 시작일시: <input class="control" type="text" id="from" name="from" placeholder="2018-05-15 08:00"  style="width:250px;"/> -->
+                                    시작일시: <input class="control" type="text" id="from" name="from" value="2018-05-25 08:00"  style="width:250px;"/>
                                     <div style="" class="space-10"></div>
                                     종료일시: <input class="control" type="text" id="to" name="to" placeholder="2018-05-16 18:00" style="width:250px;"/>
                                     <div style="" class="space-10"></div>
@@ -65,16 +66,15 @@
                                 
                                 후보자 수 : <input type="text" id="candidates" name="candidates" value=""> (최대 10) <div style="" class="space-10"></div>
                                 <a href="#" id="filldetails" onclick="addFields()" class="bttn-default wow fadeInUp" data-wow-delay="0.8s">후보자 이름, 정보 입력하기</a>
+                                <div class="space-20"></div>
                                 <div id="num_of_input"/>
                                 </div>
-    
-                            <div style="" class="space-30"></div>
                             
-                            <div class="space-50"></div>
+                                <div class="space-50"></div>
                             <button id="yes" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="myFunction()">
                                 투표제작완료
                             </button>
-                            </form>
+                            <!-- </form> -->
                             
                             </div>
                         </div>
@@ -121,11 +121,12 @@
             }
             for (i=0;i<number;i++){
                 // Append a node with a random text
-                container.appendChild(document.createTextNode("candidates " + (i+1)));
+                container.appendChild(document.createTextNode("후보자 " + (i+1) + " "));
                 // Create an <input> element, set its type and name attributes
-               input = document.createElement("input");
+                input = document.createElement("input");
                 input.type = "text";
                 input.name = "candidates_name" + i;
+                input.id = "candidates_name" + i;
                 input.placeholder = "후보자 이름";
                 container.appendChild(input);
                 var info = document.createElement("input");
@@ -154,10 +155,12 @@
             var t_hour = Number(str2.slice(11, 13));
             var t_minute = Number(str2.slice(14, 16));
             
-            setCookie('candidates',number,7);  // for how many  
+            setCookie('candidates',number,7);  // for how many (쿠키명, 쿠키값, 만료시간)
             
             for(i=0; i<number; i++){
-                App.addCandidate("candidates" + (i+1));
+                var x=document.getElementById("candidates_name"+i).value;
+                App.addCandidate(x);
+                setCookie('candidates'+i,x,7);
             }
             App.resetVoteCount(f_year, f_month, f_day, f_hour, f_minute,t_year, t_month, t_day, t_hour, t_minute);
         }
