@@ -4,8 +4,9 @@ module.exports = function(app) {
   const MySQLStore = require('express-mysql-session')(session);
   const mysql = require('mysql');
   const CryptoJS = require("crypto-js");
-  var salt = "$#$awsd%강ㄴㅇㄷ~!@#~!@ADZDCXSDFVZXCVAWEFasdfwen이";
-  var seed = "Message";
+
+  const truffle_contract = requrie('truffle-contract.js');
+  const hashdb = requrie('hashdb-contract.js');
 
   app.use(bodyParser.urlencoded({
     extended: false
@@ -14,7 +15,6 @@ module.exports = function(app) {
 
   app.get('/logo', function(req, res) {
 
-    console.log(CryptoJS.SHA256(seed+salt).toString(CryptoJS.enc.Hex));
 
     res.render('logo.html');
   });
@@ -23,7 +23,8 @@ module.exports = function(app) {
   });
 
   app.get('/presidential_election', function(req, res) {
-    if (req.session.username) {
+    if (req.session.username && hashDB.controlHashDB(req.session.seed)) 
+    {
       res.render('vote.html');
       // res.redirect('http://localhost:3000');
     } else {
@@ -36,6 +37,7 @@ module.exports = function(app) {
     `);
   });
   app.post('/try_voting', function(req, res) {
+
     if(req.session.userid != undefined && req.session.username != undefined){
       console.log(req.session.userid + "인 " + req.session.username + "가 "+ req.body.label + "에게 투표했습니다.");
       res.json({ location: req.session.location});
@@ -68,4 +70,5 @@ module.exports = function(app) {
   app.get('/voter_info', function(req, res) {
     res.render('voter_info.html');
   });
+
 }

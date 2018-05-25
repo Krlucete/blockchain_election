@@ -3,6 +3,10 @@ module.exports = function(app) {
     const session = require('express-session');
     const mysql = require('mysql');
 
+    const CryptoJS = require("crypto-js");
+    var salt = "$#$awsd%강ㄴㅇㄷ~!@#~!@ADZDCXSDFVZXCVAWEFasdfwen이";
+
+
     app.get('/auth/logout', function(req, res) {
       req.session.destroy();
       res.redirect('/logo');
@@ -54,6 +58,8 @@ module.exports = function(app) {
                   req.session.username = name;
                   req.session.userid = id;
                   req.session.location = location;
+
+                  req.session.seed = CryptoJS.SHA256(salt+resident_num).toString(CryptoJS.enc.Hex);
                   
                   req.session.save(function() {
                     res.redirect('http://localhost:7777/select_page');
@@ -62,6 +68,7 @@ module.exports = function(app) {
               }
             }
         });
+
       });
 
       app.get('/auth/login', function(req, res) {
