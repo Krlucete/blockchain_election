@@ -211,10 +211,10 @@ App = {
       });
     },
 
-  getVoteAddressCount: function(_vote, _voter){
+  getVoteAddressCount: function(_vote, location){
     App.contracts.presidentElection.deployed().then(function(instance){
       electionInstance = instance;
-      return electionInstance.getVoteAddressCount(_vote, _voter, {from: App.coinbase});
+      return electionInstance.getVoteAddressCount(_vote, location, {from: App.coinbase});
     }).then(function(result){
         console.log("getVoteAddressCount");
     }).catch(function(e){
