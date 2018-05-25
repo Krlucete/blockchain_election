@@ -4,6 +4,7 @@ const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
+
 const server = app.listen(7777, function() {
   console.log("Express server has started on port 7777")
 });

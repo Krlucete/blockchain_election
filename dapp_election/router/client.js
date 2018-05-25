@@ -3,6 +3,9 @@ module.exports = function(app) {
   const bodyParser = require('body-parser');
   const MySQLStore = require('express-mysql-session')(session);
   const mysql = require('mysql');
+  const CryptoJS = require("crypto-js");
+  var salt = "$#$awsd%강ㄴㅇㄷ~!@#~!@ADZDCXSDFVZXCVAWEFasdfwen이";
+  var seed = "Message";
 
   app.use(bodyParser.urlencoded({
     extended: false
@@ -10,6 +13,9 @@ module.exports = function(app) {
   app.use(bodyParser.json());
 
   app.get('/logo', function(req, res) {
+
+    console.log(CryptoJS.SHA256(seed+salt).toString(CryptoJS.enc.Hex));
+
     res.render('logo.html');
   });
   app.get('/select_page', function(req, res) {
