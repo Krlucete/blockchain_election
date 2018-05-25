@@ -99,9 +99,9 @@
                         </div>
                         <div class="space-50"></div>
                         <a href="/president" class="bttn-default wow fadeInUp" data-wow-delay="0.8s">투표 제작하기</a>
-                        <div class="space-10"></div>
+                        &nbsp&nbsp&nbsp&nbsp
                         <button id="yes" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="makeGraph()">
-                        결과확인(chart)</button>
+                        결과확인</button>
                        
                             <!-- The Modal -->
                         <div id="myModal" class="modal">
@@ -110,21 +110,21 @@
                                 <span class="close">&times;</span>
                                 <p> 대통령 선거 결과 </p>
                                
-                        <button class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="setGraphData()">
-                        대선</button>
-                        <button class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="setGraphDataByAddress(1)">
+                        <a onclick="setGraphData()">
+                        대선</a>
+                        <button onclick="setGraphDataByAddress(1)">
                         서울</button>
-                        <button class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="setGraphDataByAddress(2)">
+                        <button onclick="setGraphDataByAddress(2)">
                         경기</button>
-                        <button class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="setGraphDataByAddress(3)">
+                        <button onclick="setGraphDataByAddress(3)">
                         강원</button>
-                        <button class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="setGraphDataByAddress(4)">
+                        <button onclick="setGraphDataByAddress(4)">
                         충청</button>
-                        <button class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="setGraphDataByAddress(5)">
+                        <button onclick="setGraphDataByAddress(5)">
                         전라</button>
-                        <button class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="setGraphDataByAddress(6)">
+                        <button onclick="setGraphDataByAddress(6)">
                         경상</button>
-                        <button class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="setGraphDataByAddress(7)">
+                        <button onclick="setGraphDataByAddress(7)">
                         제주</button>
                                 <canvas id="myChart"></canvas>
                                 <button id="yes2" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="makeGraph()">
@@ -179,9 +179,8 @@
 
     <script>
         var modal = document.getElementById('myModal');
-    // Get the button that opens the modal
+        // Get the button that opens the modal
         var btn = document.getElementById("yes");
-
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
 
@@ -274,7 +273,6 @@
             App.getVoteAddressCount(i+1,location);
         }
     }
-
 
     function getCookie(cname){
         var name = cname + "=";
