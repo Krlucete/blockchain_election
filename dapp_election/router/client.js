@@ -40,7 +40,6 @@ module.exports = function(app) {
       console.log("투표권이 만료되었습니다. 다시 확인해 주십시오.");
       res.render('login_fail/login_fail.html');
     }
-
   });
   app.get('/vote_success', function(req, res) {
     var sql = "UPDATE citizens SET is_voted = 0 WHERE id = \'" + req.session.userid + "\'";

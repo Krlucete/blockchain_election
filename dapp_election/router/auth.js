@@ -3,11 +3,9 @@ module.exports = function(app) {
     const session = require('express-session');
     const mysql = require('mysql');
 
-    const CryptoJS = require("crypto-js");
-    var salt = "$#$awsd%강ㄴㅇㄷ~!@#~!@ADZDCXSDFVZXCVAWEFasdfwen이";
-  //   const truffle_contract = require('truffle-contract.js');
-  // const hashdb = require('hashdb-contract.js');
-    app.get('/auth/logout', function(req, res) {
+    // const CryptoJS = require("crypto-js");
+    // var salt = "$#$awsd%강ㄴㅇㄷ~!@#~!@ADZDCXSDFVZXCVAWEFasdfwen이";
+     app.get('/auth/logout', function(req, res) {
       req.session.destroy();
       res.redirect('/logo');
     });
