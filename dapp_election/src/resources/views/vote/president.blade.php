@@ -52,11 +52,11 @@
                         <div class="desc wow fadeInUp" data-wow-delay="0.6s">
                             
                         <div class="subscribe-form text-center">
-                            <!-- <form id="mc-form" action="/president" method="POST"> -->
+                            <form id="mc-form" action="/president" method="POST">
                                 {{ csrf_field()}}
                                 <div class="col-md-12 col-sm-10">
                                 <!-- 시작일시: <input class="control" type="text" id="from" name="from" placeholder="2018-05-15 08:00"  style="width:250px;"/> -->
-                                    시작일시: <input class="control" type="text" id="from" name="from" value="2018-05-25 08:00"  style="width:250px;"/>
+                                    시작일시: <input class="control" type="text" id="from" name="from" value="2018-05-26 08:00"  style="width:250px;"/>
                                     <div style="" class="space-10"></div>
                                     종료일시: <input class="control" type="text" id="to" name="to" placeholder="2018-05-16 18:00" style="width:250px;"/>
                                     <div style="" class="space-10"></div>
@@ -74,7 +74,7 @@
                             <button id="yes" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="myFunction()">
                                 투표제작완료
                             </button>
-                            <!-- </form> -->
+                            </form>
                             
                             </div>
                         </div>
