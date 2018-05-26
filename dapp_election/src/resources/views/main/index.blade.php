@@ -122,6 +122,7 @@
                                 <canvas id="myChart"></canvas>
                                 <button id="yes2" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="makeGraph()">
                         차트만들기</button>
+                        <p>어어 <script> App.getWinner(); App.getTieWinner(); </script> </p>
                             </div>
                         </div>
                     </div>
@@ -245,7 +246,7 @@
      function makeGraph(){ 
         clearData(myChart);
         for(var i=0; i<getCookie('candidates'); i++){
-          console.log(App.candidateName[i] + ": " + App.voteCount[i]); // 결과확인(console)
+          console.log(getCookie('candidates'+i) + App.voteCount[i]); // 결과확인(console)
         }
         for(var i=0; i<getCookie('candidates'); i++){
             // addData(myChart, (i+1) + "번후보", Number(App.voteCount[i])); // 결과확인(chart)
