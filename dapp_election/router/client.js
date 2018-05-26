@@ -3,10 +3,6 @@ module.exports = function(app) {
   const bodyParser = require('body-parser');
   const MySQLStore = require('express-mysql-session')(session);
   const mysql = require('mysql');
-  const CryptoJS = require("crypto-js");
-
-  const truffle_contract = requrie('truffle-contract.js');
-  const hashdb = requrie('hashdb-contract.js');
 
   app.use(bodyParser.urlencoded({
     extended: false
@@ -14,8 +10,6 @@ module.exports = function(app) {
   app.use(bodyParser.json());
 
   app.get('/logo', function(req, res) {
-
-
     res.render('logo.html');
   });
   app.get('/select_page', function(req, res) {
@@ -23,8 +17,8 @@ module.exports = function(app) {
   });
 
   app.get('/presidential_election', function(req, res) {
-    if (req.session.username && hashDB.controlHashDB(req.session.seed)) 
-    {
+    if (req.session.username) 
+    { 
       res.render('vote.html');
       // res.redirect('http://localhost:3000');
     } else {
