@@ -3,7 +3,8 @@ App = {
   contracts: {},
   coinbase: 'null',
   voteCount: [],
-
+  candidateName: [],
+  
   init: function() {
     return App.initWeb3();
   },
@@ -154,7 +155,8 @@ App = {
       electionInstance = instance;
       return electionInstance.addCandidate(_name, {from: App.coinbase});
     }).then(function(result){
-      console.log("addCandidate");
+      App.candidateName.push(_name);
+      console.log("addCandidate: " + App.candidateName[App.candidateName.length - 1]);
     }).catch(function(e){
       console.log("e_addCandidate");
     });
