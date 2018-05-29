@@ -187,7 +187,7 @@ contract presidentElection is dateTime
     function getWinner() voteFinished constant public returns(uint) 
     {
         //승자
-        if (isTie()) return 1;
+        if (isTie()) return 99;
         return winnerIndex;
     }
     
