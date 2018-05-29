@@ -168,7 +168,6 @@ App = {
       return electionInstance.setTimeStamp(_year, _month, _day, _hour, _minute, {from: App.coinbase});
     }).then(function(result){
       App.setEndTimeStamp(t_year, t_month, t_day, t_hour, t_minute);
-
       console.log("setTimeStamp");
     }).catch(function(e){
       console.log("e_setTimeStamp");
@@ -181,7 +180,6 @@ App = {
       return electionInstance.setEndTimeStamp(_year, _month, _day, _hour, _minute, {from: App.coinbase});
     }).then(function(result){
       console.log("setEndTimeStamp");
-
     }).catch(function(e){
       console.log("e_setEndTimeStamp");
     });
@@ -203,9 +201,10 @@ App = {
         electionInstance = instance;
         return electionInstance.getVoteCount(_vote,{from: App.coinbase});
       }).then(function(result){
-        console.log(result.c[0]);
+        // console.log("getVoteCount: " + result.c[0]);
+        
         App.voteCount.push(result.c[0]);
-        console.log(App.voteCount);
+        console.log("getVoteCount" + App.voteCount);
       }).catch(function(e){
         console.log(e);
         console.log("e_getVoteCount");
@@ -217,9 +216,9 @@ App = {
       electionInstance = instance;
       return electionInstance.getVoteAddressCount(_vote, location, {from: App.coinbase});
     }).then(function(result){
-       console.log(result.c[0]);
+      //  console.log(result.c[0]);
        App.voteCount.push(result.c[0]);
-       console.log(App.voteCount);
+       console.log("지역: " + App.voteCount);
     }).catch(function(e){
       console.log(e);
       alert("vote 진행중에 결과창을 확인할 수 없습니다.");
@@ -227,15 +226,24 @@ App = {
     });
   },
 
+  setCookie: function(cname, cvalue, exdays){
+    var d = new Date();
+    d.setDate(d.getDate() + 1); //1일 뒤 이 시간
+    var expires = "expires="+d.toGMTString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+  },
+
   getWinner: function(){
     App.contracts.presidentElection.deployed().then(function(instance){
       electionInstance = instance;
       return electionInstance.getWinner({from: App.coinbase});
     }).then(function(result){
-      console.log("getWinner");
+      console.log("getWinner: " + result);
+      App.setCookie('canNum', result, 7);
     }).catch(function(e){
       console.log("e_getWinner");
     });
+    
   },
 
   castVote: function(voter,location){
@@ -284,3 +292,5 @@ App = {
 window.onload = function () {
 	App.init();
 }
+
+

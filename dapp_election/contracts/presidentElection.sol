@@ -184,11 +184,11 @@ contract presidentElection is dateTime
         return false;
     }
 
-    function getWinner() voteFinished constant public returns(string) 
+    function getWinner() voteFinished constant public returns(uint) 
     {
         //승자
-        if (isTie()) return "tie";
-        return candidate[winnerIndex];
+        if (isTie()) return 1;
+        return winnerIndex;
     }
     
     function getVoteCount(uint _vote) constant public returns (uint){
