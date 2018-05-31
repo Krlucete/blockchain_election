@@ -9,7 +9,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Title -->
-    <title>Appy App Landing Template.</title>
+    <title>선거관리위원회</title>
     <!-- Place favicon.ico in the root directory -->
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     <link rel="shortcut icon" type="image/ico" href="images/favicon.ico" />
@@ -56,7 +56,7 @@
                                 {{ csrf_field()}}
                                 <div class="col-md-12 col-sm-10">
                                 <!-- 시작일시: <input class="control" type="text" id="from" name="from" placeholder="2018-05-15 08:00"  style="width:250px;"/> -->
-                                    시작일시: <input class="control" type="text" id="from" name="from" value="2018-05-26 08:00"  style="width:250px;"/>
+                                    시작일시: <input class="control" type="text" id="from" name="from" value="2018-05-28 08:00"  style="width:250px;"/>
                                     <div style="" class="space-10"></div>
                                     종료일시: <input class="control" type="text" id="to" name="to" placeholder="2018-05-16 18:00" style="width:250px;"/>
                                     <div style="" class="space-10"></div>
@@ -65,17 +65,16 @@
                                 <div style="" class="space-10"></div>
                                 
                                 후보자 수 : <input type="text" id="candidates" name="candidates" value=""> (최대 10) <div style="" class="space-10"></div>
-                                <a href="#" id="filldetails" onclick="addFields()" class="bttn-default wow fadeInUp" data-wow-delay="0.8s">후보자 이름, 정보 입력하기</a>
+                                <a href="#" id="filldetails" onclick="addFields()" class="bttn-default wow fadeInUp" data-wow-delay="0.8s">후보자 이름, 정당 입력하기</a>
                                 <div class="space-20"></div>
                                 <div id="num_of_input"/>
                                 </div>
                             
                                 <div class="space-50"></div>
-                            <button id="yes" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="myFunction()">
-                                투표제작완료
-                            </button>
+                                <button id="yes" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="myFunction()">
+                                    선거제작완료
+                                </button>
                             </form>
-                            
                             </div>
                         </div>
                     </div>
@@ -170,7 +169,6 @@
             var expires = "expires="+d.toGMTString();
             document.cookie = cname + "=" + cvalue + "; " + expires;
         }
-        // myFunction();
     </script>                  
 </body>
 </html>

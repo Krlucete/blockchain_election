@@ -1,17 +1,13 @@
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="kr">
 <head>
     <meta charset="utf-8">
-    <meta name="author" content="Sumon Rahman">
-    <meta name="description" content="">
     <meta name="keywords" content="HTML,CSS,XML,JavaScript">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Title -->
-    <title>Appy App Landing Template.</title>
-    <!-- Place favicon.ico in the root directory -->
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    <link rel="shortcut icon" type="image/ico" href="images/favicon.ico" />
+    <title>선거관리위원회</title>
+
     <!-- Plugin-CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
@@ -98,7 +94,7 @@
                             <p>대통령선거에는 선거 일시, 후보자 정보가 필요합니다</p>
                         </div>
                         <div class="space-50"></div>
-                        <a href="/president" class="bttn-default wow fadeInUp" data-wow-delay="0.8s">투표 제작하기</a>
+                        <a href="/president" class="bttn-default wow fadeInUp" data-wow-delay="0.8s">선거 제작하기</a>
                         &nbsp&nbsp&nbsp&nbsp
                         <button id="yes" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="makeGraph()">
                         결과확인</button>
@@ -110,7 +106,8 @@
                                 <span class="close">&times;</span>
                                 <h3> 대통령 선거 결과 </h3>
                                 <p>선택 후 '차트만들기' 버튼을 눌러주세요</p>
-                                <br>
+                                <p id="winner"></p>
+                                <!-- <p id="winner"> 축하합니다! </p> -->
                                 <a onclick="setGraphData()">대선</a>&nbsp
                                 <a onclick="setGraphDataByAddress(1)">서울</a>&nbsp
                                 <a onclick="setGraphDataByAddress(2)">경기</a>&nbsp
@@ -119,10 +116,11 @@
                                 <a onclick="setGraphDataByAddress(5)">전라</a>&nbsp
                                 <a onclick="setGraphDataByAddress(6)">경상</a>&nbsp
                                 <a onclick="setGraphDataByAddress(7)">제주</a>&nbsp
+                                <div class="space-20"></div>
+                                
                                 <canvas id="myChart"></canvas>
                                 <button id="yes2" type="submit" class="bttn-default wow fadeInUp" data-wow-delay="0.8s" onclick="makeGraph()">
-                        차트만들기</button>
-                        <p>어어 <script> App.getWinner(); App.getTieWinner(); </script> </p>
+                                 차트만들기</button>
                             </div>
                         </div>
                     </div>
@@ -139,10 +137,10 @@
                     <div class="page-title">
                         <h5 class="title wow fadeInUp" data-wow-delay="0.2s">shareholder</h5>
                         <div class="space-10"></div>
-                        <h3 class="dark-color wow fadeInUp" data-wow-delay="0.4s">주주총회선거 제작하기</h3>
+                        <h3 class="dark-color wow fadeInUp" data-wow-delay="0.4s">주주총회투표 제작하기</h3>
                         <div class="space-20"></div>
                         <div class="desc wow fadeInUp" data-wow-delay="0.6s">
-                            <p>주주총회선거에는 투표 이름, 선거 일시, 후보자 정보, 투표자 정보가 필요합니다</p>
+                            <p>주주총회투표에는 투표 이름, 선거 일시, 후보자 정보, 투표자 정보가 필요합니다</p>
                         </div>
                         <div class="space-50"></div>
                         <a href="/shareholder" class="bttn-default wow fadeInUp" data-wow-delay="0.8s">투표 제작하기</a>
@@ -243,18 +241,36 @@
     ////////////////////////////////////
     getCookie();
 
-     function makeGraph(){ 
+     function makeGraph(){  // 차트만들기 버튼
+         var winner;
+         var textnode;
+         var exist;
+         var canNum;
         clearData(myChart);
         for(var i=0; i<getCookie('candidates'); i++){
-          console.log(getCookie('candidates'+i) + App.voteCount[i]); // 결과확인(console)
+          console.log(getCookie('candidates'+i) + ": " + App.voteCount[i]); // 결과확인(console)
         }
         for(var i=0; i<getCookie('candidates'); i++){
-            // addData(myChart, (i+1) + "번후보", Number(App.voteCount[i])); // 결과확인(chart)
             addData(myChart, getCookie('candidates'+i), Number(App.voteCount[i]));
+        }
+        App.getWinner();  // return 후보번호
+        canNum = getCookie('canNum');
+        winner = document.createElement("P");
+        winner.setAttribute("id", "winnerName");
+        textnode = document.createTextNode(getCookie('candidates'+Number(canNum)));
+        winner.appendChild(textnode);
+
+        exist = document.getElementById("winner");
+        if(document.getElementById("winnerName")){
+            var winnerName = document.getElementById("winnerName");
+            return;
+        } else {
+            exist.insertBefore(winner, exist.childNodes[0]);
         }
     }
 
-    function setGraphData() {  // 집계하기
+    function setGraphData() {  // 집계하기(대선)
+        App.countVotes();
         App.voteCount = [];
         for(var i=0; i<getCookie('candidates'); i++){
             App.getVoteCount(i+1);

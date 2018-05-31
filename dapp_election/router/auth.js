@@ -3,8 +3,8 @@ module.exports = function(app) {
     const session = require('express-session');
     const mysql = require('mysql');
 
-    // const CryptoJS = require("crypto-js");
-    // var salt = "$#$awsd%강ㄴㅇㄷ~!@#~!@ADZDCXSDFVZXCVAWEFasdfwen이";
+    const CryptoJS = require("crypto-js");
+    var salt = "$#$awsd%강ㄴㅇㄷ~!@#~!@ADZDCXSDFVZXCVAWEFasdfwen이";
      app.get('/auth/logout', function(req, res) {
       req.session.destroy();
       res.redirect('/logo');
