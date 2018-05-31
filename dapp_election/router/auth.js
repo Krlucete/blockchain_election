@@ -37,10 +37,10 @@ module.exports = function(app) {
                 // var seed = resident_num;
                 var first_resident_num = resident_num.substring(0, 1);
                 var age = 0;
-                if (first_resident_num == "0") {
-                  age = 2018 - 2000 - Number(resident_num.substring(0, 2));
+                if (first_resident_num != "9") {
+                  age = (2018 - 2000) - Number(resident_num.substring(0, 2));
                 } else {
-                  age = 2018 - 1900 - Number(resident_num.substring(0, 2));
+                  age = (2018 - 1900) - Number(resident_num.substring(0, 2));
                 }
 
                 if(rows[0].is_voted!=is_voted){
