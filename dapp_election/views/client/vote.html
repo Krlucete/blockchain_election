@@ -115,7 +115,7 @@
                   <div style="height:60px;" layout-padding>
                     <div layout="row">
                       <div layout="column" flex="20" layout-align="center center">
-                        <md-radio-button ng-value="candidate"></md-radio-button>
+                        <md-radio-button aria-label="candidates" ng-value="candidate" aria-checked="false"></md-radio-button>
                       </div>
                       <div layout="column" flex>
                         <div flex="40">
@@ -143,8 +143,8 @@
                 <md-button class="md-raised" id="vote" type="submit">{{text.btn_vote_msg}}</md-button>
               </div>
               <div layout="row">
-                <md-button flex class="md-raised" href="/auth/logout" type="button">{{text.btn_cancle_msg}}</md-button>
-                <md-button flex class="md-raised" href="/voter_info" type="button">{{text.btn_voter_info_msg}}</md-button>
+                <md-button class="md-raised" href="/auth/logout" type="button">{{text.btn_cancle_msg}}</md-button>
+                <md-button class="md-raised" href="/voter_info" type="button">{{text.btn_voter_info_msg}}</md-button>
               </div>
             </div>
           </div>
@@ -166,7 +166,7 @@
               <div layout="column" ng-repeat="candidate in candidates">
                 <div layout="row" layout-padding layout-align="space-around center">
                   <div flex="10">
-                    <md-radio-button layout-margin layout-padding ng-value="candidate">
+                    <md-radio-button aria-label="candidates" layout-margin layout-padding ng-value="candidate">
                     </md-radio-button>
                   </div>
                   <div flex="10" layout-margin layout-padding>
@@ -190,8 +190,8 @@
             <md-button class="md-raised" id="vote2" type="submit">{{text.btn_vote_msg}}</md-button>
           </div>
           <div layout="row">
-            <md-button flex class="md-raised" href="/auth/logout" type="button">{{text.btn_cancle_msg}}</md-button>
-            <md-button flex class="md-raised" href="/voter_info" type="button">{{text.btn_voter_info_msg}}</md-button>
+            <md-button class="md-raised" href="/auth/logout" type="button">{{text.btn_cancle_msg}}</md-button>
+            <md-button class="md-raised" href="/voter_info" type="button">{{text.btn_voter_info_msg}}</md-button>
           </div>
         </form>
       </div>
